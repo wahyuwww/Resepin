@@ -1,0 +1,29 @@
+ @font-face /*perintah untuk memanggil font eksternal*/
+{
+    font-family: 'airbnb_md'; /*memberikan nama bebas untuk font*/
+    src: url('../../airbnb-cereal-font/AirbnbCereal_W_Md.otf');/*memanggil file font eksternalnya di folder nexa*/
+}
+.profilImage{
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.textProfil{
+    font-family: airbnb_md;
+    margin-top: 10px;
+}
+.choase, .choase a{
+    border: none;
+     color: #222222;
+     text-decoration: none;
+      font-family: airbnb_md;
+}
+.captionImage{
+    position: absolute;
+    bottom: 0px;
+    font-family: airbnb_md;
+    font-weight: 500;
+    color: #F6F5F4;
+    font-size: 28px;
+}
