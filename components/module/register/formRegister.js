@@ -1,6 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import style from "./register.module.css"
+import Link from "next/link"
 const FormRegister = () => {
   return (
     <>
@@ -10,18 +11,18 @@ const FormRegister = () => {
             htmlFor="exampleFormControlInput1"
             className={`${style.titleRegis} form-label `}
           >
-            {" "}
-            Name{" "}
-          </label>{" "}
+            
+            Name
+          </label>
           <input type="text" className="form-control mb-3" placeholder="name" />
           <div className="mb-3">
             <label
               htmlFor="exampleFormControlInput1"
               className={`${style.titleRegis} form-label `}
             >
-              {" "}
-              Email address *{" "}
-            </label>{" "}
+              
+              Email address *
+            </label>
             <input
               type="email"
               className="form-control mb-3"
@@ -32,9 +33,9 @@ const FormRegister = () => {
                 htmlFor="exampleFormControlInput1"
                 className={`${style.titleRegis} form-label `}
               >
-                {" "}
-                Phone Number{" "}
-              </label>{" "}
+                
+                Phone Number
+              </label>
               <input
                 type="number"
                 className="form-control mb-3"
@@ -45,29 +46,29 @@ const FormRegister = () => {
                   htmlFor="exampleFormControlInput1"
                   className={`${style.titleRegis} form-label `}
                 >
-                  {" "}
-                  Create New Password{" "}
-                </label>{" "}
+                  
+                  Create New Password
+                </label>
                 <input
                   type="password"
                   className="form-control mb-3"
                   placeholder="Create New Password"
                 />
-              </div>{" "}
+              </div>
               <div className="mb-3">
                 <label
                   htmlFor="exampleFormControlInput1"
                   className={`${style.titleRegis} form-label `}
                 >
-                  {" "}
-                  Password{" "}
-                </label>{" "}
+                  
+                  Password
+                </label>
                 <input
                   type="password"
                   className="form-control"
                   placeholder="Password"
                 />
-              </div>{" "}
+              </div>
               <div
                 className={`${style.codisionalRegis} form-check mb-4 mt-2 float-start  ms-1`}
               >
@@ -78,33 +79,30 @@ const FormRegister = () => {
                   id="flexCheckDefault"
                 />
                 <label className="form-check-label" htmlFor="flexCheckDefault">
-                  I agree to terms & conditions{" "}
-                </label>{" "}
-              </div>{" "}
+                  I agree to terms & conditions
+                </label>
+              </div>
               <a href="../Home.html">
                 <button
                   className={`${style.btnSignup} w-100 btn `}
                   type="button"
                 >
-                  {" "}
-                  Register Account{" "}
-                </button>{" "}
-              </a>{" "}
+                  
+                  Register Account
+                </button>
+              </a>
               <label className={`${style.loginPage}   text-center"`} htmlFor="">
-                {" "}
                 Already have account ?
-                <a
-                  className={`${style.pageRegister}`}
-                  href="./register.html"
-                >
-                  {" "}
-                  Log in Here{" "}
-                </a>{" "}
-              </label>{" "}
-            </div>{" "}
-          </div>{" "}
-        </div>{" "}
-      </form>{" "}
+                <Link href="/login">
+                  <a className={`${style.pageRegister}`}>
+                    Log in Here
+                  </a>
+                </Link>
+              </label>
+            </div>
+          </div>
+        </div>
+      </form>
     </>
   );
 };

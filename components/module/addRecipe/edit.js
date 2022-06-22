@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import styles from "./style.module.css";
 import axios from "axios";
 import Router from "next/router";
-import Input from '../../../components/base/input/input'
+import { useRouter } from "next/router";
 
-const AddRecipe = () => {
+const EditReceped = () => {
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
   const [ingrediens, setIngrediens] = useState("");
   const [video, setVideo] = useState("");
-
+ const router = useRouter();
+ const id = router.query.id;
   const submit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -19,7 +20,7 @@ const AddRecipe = () => {
     formData.append("ingrediens", ingrediens);
     formData.append("video", video);
     await axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/food/`, formData, {
+      .put(`${process.env.NEXT_PUBLIC_API_URL}/food/${id}`, formData, {
         "content-type": "multipart/form-data",
       })
       .then((res) => {
@@ -31,17 +32,33 @@ const AddRecipe = () => {
         console.log(error);
       });
   };
-    const onImageUpload = (e) => {
-      const file = e.target.files[0];
-      console.log(file)
-      setImage(file);
-    };
-  const onVideoUpload = (e) => {
-      const file = e.target.files[0];
-      setVideo(file);
-      console.log(e.target.files[0]);
+  const onImageUpload = (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    setImage(file);
   };
-  
+  const onVideoUpload = (e) => {
+    const file = e.target.files[0];
+    setVideo(file);
+    console.log(e.target.files[0]);
+  };
+   const getFoodtById = async (id) => {
+     try {
+       const response = await axios.get(
+         `${process.env.NEXT_PUBLIC_API_URL}/food/${id}`
+       );
+       console.log(response.data.data);
+       setTitle(response.data.data[0].title);
+       setIngrediens(response.data.data[0].ingrediens);
+     } catch (error) {
+       console.log(error);
+     }
+   };
+   useEffect(() => {
+     getFoodtById(id);
+   }, []);
+    
+    
   return (
     <>
       <main className="mt-5">
@@ -66,7 +83,7 @@ const AddRecipe = () => {
                   </div>
                 </div>
                 <div className="mb-3">
-                  <Input
+                  <input
                     type="text"
                     name="title"
                     value={title}
@@ -88,7 +105,7 @@ const AddRecipe = () => {
                   ></textarea>
                 </div>
                 <div className="mb-3">
-                  <Input
+                  <input
                     type="file"
                     multiple
                     onChange={(e) => onVideoUpload(e)}
@@ -109,4 +126,4 @@ const AddRecipe = () => {
   );
 };
 
-export default AddRecipe;
+export default EditReceped;

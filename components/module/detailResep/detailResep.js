@@ -1,20 +1,57 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import styles from "./style.module.css";
+import { useRouter } from "next/router";
+import Link from "next/link"
+
+
 const DetailResep = () => {
+  const [title, setTitle] = useState("");
+  const [idfood, setFood] = useState("");
+  const [ingrediens, setIngrediens] = useState("");
+  const [imagePreview, setImagePreview] = useState("");
+  const router = useRouter();
+  const id = router.query.id;
+  
+  const getFoodById = async (id) => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/food/${id}`
+      );
+      console.log(response.data.data);
+      setImagePreview(response.data.data[0].image);
+      setTitle(response.data.data[0].title);
+      setFood(response.data.data[0].idfood);
+      setIngrediens(
+        response.data.data[0].ingrediens
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log(typeof ingrediens)
+  useEffect(() => {
+    getFoodById(id);
+  }, [id]);
   return (
     <>
       <main className="mt-5">
         <div className="container slide">
           <div className="row">
             <div className="col-lg-12">
-              <h1 className="text-center mt-5">Loream Sandwich</h1>
-              <a href="">
-                <img
+              <h1 className="text-center mt-5">{title}</h1>
+              {imagePreview && (
+                <Image
+                  src={imagePreview}
+                  width={360}
+                  height={180}
+                  layout="responsive"
+                  alt="Picture of the author"
                   className={`${styles.imageCover} img img-responsive `}
-                  src="/assets//Rectangle 313 (3).png"
                 />
-              </a>
+              )}
               <div className={`${styles.captionLogo}`}>
                 <button className={`${styles.simpan} btn`}>
                   <img src="/assets/simpan.png" width="25px" alt="" />
@@ -27,23 +64,26 @@ const DetailResep = () => {
             <div className="col-lg-4  mt-5">
               <h4 className={`${styles.titleIng}`}>Ingredients</h4>
               <ul className={`${styles.ingrediens}`}>
-                <li>2 eggs</li>
-                <li>
-                  2-3 slices of tomato or a lettuce leaf and a slice of ham or
-                  cheese
-                </li>
-                <li>2 tbsp mayonnaise</li>
-                <li>a little butter</li>
-                <li>crisps , to serve</li>
-                <li> slices bread</li>
+                {ingrediens?.split(",") ? (
+                  <>
+                    {ingrediens && <li>{ingrediens.split(",")[0]}</li>}
+                    {ingrediens && <li>{ingrediens.split(",")[1]}</li>}
+                    {ingrediens && <li>{ingrediens.split(",")[2]}</li>}
+                    {ingrediens && <li>{ingrediens.split(",")[3]}</li>}
+                  </>
+                ) : (
+                  <li>tidak ada ingrediens</li>
+                )}
               </ul>
             </div>
             <div className={`${styles.videoPlay} col-lg-12 `}>
               <h3 className={`${styles.videoStep}`}>Video Step</h3>
               <div className={`${styles.play}`}>
-                <button className={`${styles.play} btn btn-warning `}>
-                  <img src="/assets/Vector.png" width="10px" alt="" />
-                </button>
+                <Link href={`/detail/${idfood}`}>
+                  <button className={`${styles.play} btn btn-warning `}>
+                    <img src="/assets/Vector.png" width="10px" alt="" />
+                  </button>
+                </Link>
               </div>
               <div className={`${styles.play}`}>
                 <button className={`${styles.play} btn btn-warning `}>

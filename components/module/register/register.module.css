@@ -14,6 +14,11 @@ input.checkbox {
     align-items: center;
     justify-content: center;
 }
+.pageRegister{
+    text-decoration: none;
+    color: #EFC81A; 
+    margin-left: 10px;
+}
 .formRegis{
     margin-top: -30px !important;
 }

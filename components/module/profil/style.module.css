@@ -26,4 +26,31 @@
     font-weight: 500;
     color: #F6F5F4;
     font-size: 28px;
+    text-shadow: 2px 2px #252424;
+}
+.icondel{
+     position: absolute;
+    z-index: 100;
+    right: 0;
+    margin-right: 35px;
+     border: 2px solid #222222;
+    border-radius: 5px;
+    background-color: rgb(252, 0, 63);
+}
+.iconedit{
+    position: absolute;
+    z-index: 100;
+    right: 0;
+    border: 2px solid #222222;
+    border-radius: 10px;
+    background-color: aqua;
+}
+.pen{
+    width: 25px;
+    height: 25px;
+}
+.del{
+     width: 25px;
+    height: 25px;
+    color: rgb(41, 25, 25);
 }

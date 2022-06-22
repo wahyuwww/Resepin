@@ -10,9 +10,9 @@ const Navbars = ({ classAdd, classHome, classProfil }) => {
   return (
     <>
       <header>
-        <Navbar className="fixed-top"bg="light" expand="lg">
+        <Navbar className="fixed-top" bg="light" expand="lg">
           <Container>
-            <Navbar.Brand href="#home">Food-Recipe</Navbar.Brand>
+            <Navbar.Brand href="/home">Food-Recipe</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
@@ -47,15 +47,17 @@ const Navbars = ({ classAdd, classHome, classProfil }) => {
                       <img src="/assets/User icon.png" alt="" />
                     </button>
                   </li>
-                  <li className="nav-item">
-                    <a
-                      className={`${style.navLink} nav-link`}
-                      aria-current="page"
-                      href="#"
-                    >
-                      Login
-                    </a>
-                  </li>
+                  <Link href="/login">
+                    <li className="nav-item">
+                      <a
+                        className={`${style.navLink} nav-link`}
+                        aria-current="page"
+                        href="#"
+                      >
+                        Login
+                      </a>
+                    </li>
+                  </Link>
                 </ul>
               </Nav>
             </Navbar.Collapse>
