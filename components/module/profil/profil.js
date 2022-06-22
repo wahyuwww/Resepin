@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React,{useState, useEffect} from "react";
 import style from "./style.module.css";
 import "bootstrap/dist/css/bootstrap.css";

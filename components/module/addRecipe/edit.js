@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState,useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import styles from "./style.module.css";
@@ -56,6 +57,7 @@ const EditReceped = () => {
    };
    useEffect(() => {
      getFoodtById(id);
+   // eslint-disable-next-line react-hooks/exhaustive-deps
    }, []);
     
     

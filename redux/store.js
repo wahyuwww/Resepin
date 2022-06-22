@@ -1,20 +1,23 @@
-import {createStore, applyMiddleware} from 'redux'
-import rootReducer from './reducers/rootReducer'
-import logger from 'redux-logger'
-import thunk from 'redux-thunk'
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
 import { createWrapper } from "next-redux-wrapper";
-const persistConfig = {
-  key: "auth",
-  // eslint-disable-next-line no-dupe-keys
-  key:"refreshToken",
-  storage: storage,
-  whitelist: ["auth"], // which reducer want to store
-};
-const pReducer = persistReducer(persistConfig, rootReducer);
-const middleware = applyMiddleware(thunk, logger);
-const store = createStore(pReducer, middleware);
-const persistor = persistStore(store);
-export { persistor, store };
+import rootReducer from "./reducers/rootReducer";
+
+// initial states here
+const initalState = {};
+
+// middleware
+const middleware = [thunk];
+
+// creating store
+export const store = createStore(
+  rootReducer,
+  initalState,
+  composeWithDevTools(applyMiddleware(...middleware))
+);
+
+// assigning store to next wrapper
+const makeStore = () => store;
+
+export const wrapper = createWrapper(makeStore);
