@@ -32,13 +32,14 @@ const Profils = () => {
     const router = useRouter();
 
     const refreshData = () => {
-      router.replace(router.asPath);
+      // router.replace(router.asPath);
+      Router.push("/profil");
     };
 
     const deletePost = async (id) => {
       await axios.delete(`http://localhost:5000/food/${id}`);
-      alert("berhasil menghapus yaa")
-      Router.push("/profil");
+      // alert("berhasil menghapus yaa")
+      
       refreshData();
     };
   return (

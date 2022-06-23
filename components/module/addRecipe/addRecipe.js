@@ -30,6 +30,7 @@ const AddRecipe = () => {
         alert("anda berhasil mengupload resep");
       })
       .catch((error) => {
+        alert('isi yang benar yaa')
         console.log(error);
       });
   };
