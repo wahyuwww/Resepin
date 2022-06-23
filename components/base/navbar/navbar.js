@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import Container from "react-bootstrap/Container";

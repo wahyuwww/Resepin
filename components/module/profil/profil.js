@@ -38,7 +38,7 @@ const Profils = () => {
     const deletePost = async (id) => {
       await axios.delete(`http://localhost:5000/food/${id}`);
       alert("berhasil menghapus yaa")
-      // Router.push("/profil");
+      Router.push("/profil");
       refreshData();
     };
   return (

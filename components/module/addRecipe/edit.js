@@ -5,6 +5,9 @@ import styles from "./style.module.css";
 import axios from "axios";
 import Router from "next/router";
 import { useRouter } from "next/router";
+import Input from "../../../components/base/input/input";
+import Button from "../../../components/base/Button/button";
+
 
 const EditReceped = () => {
   const [image, setImage] = useState("");
@@ -27,7 +30,7 @@ const EditReceped = () => {
       .then((res) => {
         console.log(res);
         Router.push("/profil");
-        alert("cie berhasil");
+        alert("anda berhasil mengupdate");
       })
       .catch((error) => {
         console.log(error);
@@ -107,7 +110,7 @@ const EditReceped = () => {
                   ></textarea>
                 </div>
                 <div className="mb-3">
-                  <input
+                  <Input
                     type="file"
                     multiple
                     onChange={(e) => onVideoUpload(e)}
@@ -116,9 +119,11 @@ const EditReceped = () => {
                     accept="video/*"
                   />
                 </div>
-                <button className={`${styles.btnAdd} btn`} type="submit">
-                  Post
-                </button>
+                <Button
+                  className={`${styles.btnAdd} btn`}
+                  type="submit"
+                  title="Edit Post"
+                ></Button>
               </form>
             </div>
           </div>

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from "react";
 import styles from "./style.module.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -201,17 +202,6 @@ const Home = () => {
             >
               <BsFillArrowLeftSquareFill />
             </button>
-            {/* {page.map((page, index) => (
-              <div className="btn btn-primary" onClick={next} key={index - 1}>
-                <p
-                  onClick={previos}
-                  className="m-auto font-weight-bold"
-                  value={index + 1}
-                >
-                  {index + 1}
-                </p>
-              </div>
-            ))} */}
             <p className={`${styles.curent}`}>
               {paginate.currentPage}/{paginate.totalPage}
             </p>

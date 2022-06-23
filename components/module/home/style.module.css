@@ -174,4 +174,16 @@
   .imagePage, .latar,.imageTwo,.imageThere,.bag{
     display: none;
   }
+  .pagination{
+  margin-left: 80px;
+}
+.curent{
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+.next{
+  margin-left: 0px;
+}
 }

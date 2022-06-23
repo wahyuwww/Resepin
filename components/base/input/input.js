@@ -1,19 +1,26 @@
 import React from "react";
-
-const Input = ({type,name,value,onChange,className,placeholder}) => {
+import PropTypes from "prop-types";
+const Input = ({...props}) => {
   return (
     <div>
       <input
-        type={type}
-        name={name}
-        value={value}
-        onChange={onChange}
-        className={className}
+        {...props}
         id="exampleFormControlInput1"
-        placeholder={placeholder}
       />
     </div>
   );
 };
+Input.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  placeholder: PropTypes.string,
+  value: PropTypes.string,
+  type: PropTypes.string,
+  onChange: PropTypes.func,
+};
 
+Input.defaultProps = {
+  name: "name",
+  type: "text"
+};
 export default Input;
