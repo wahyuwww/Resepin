@@ -5,11 +5,17 @@ import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
 import { Dropdown } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { useRouter, useSearchParams } from "next/router";
-import { BsFillArrowLeftSquareFill,BsFillArrowRightSquareFill} from "react-icons/bs";
+import {
+  BsFillArrowLeftSquareFill,
+  BsFillArrowRightSquareFill,
+} from "react-icons/bs";
 const Home = () => {
   const [resep, setResep] = useState([]);
   const [counter, setCounter] = useState(1);
+  const { user } = useSelector((state) => state.auth);
+  console.log(user);
   const [paginate, setPagination] = useState({
     currentPage: 1,
     limit: 6,
@@ -17,9 +23,9 @@ const Home = () => {
     search: "",
   });
   const [sort, setSort] = useState("ASC");
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   console.log(paginate);
-  async function fetchData(counter,sort,search) {
+  async function fetchData(counter, sort, search) {
     try {
       const result = await axios({
         method: "GET",
@@ -34,32 +40,34 @@ const Home = () => {
     }
   }
   useEffect(() => {
-    fetchData(counter, sort,search);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [counter, sort,search]);
+    fetchData(counter, sort, search);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [counter, sort, search]);
 
-   const next = () => {
-     setCounter(
-       counter === paginate.totalPage ? paginate.totalPage : counter + 1
-     );
-     console.log(counter);
-   };
-   const previos = () => {
-     setCounter(counter <= 1 ? 1 : counter - 1);
-   };
-   const sortby = () => {
-     setSort("DESC");
-   };
-   const sortAsc = () => {
-     setSort("ASC");
+  const next = () => {
+    setCounter(
+      counter === paginate.totalPage ? paginate.totalPage : counter + 1
+    );
+    console.log(counter);
+  };
+  const previos = () => {
+    setCounter(counter <= 1 ? 1 : counter - 1);
+  };
+  const sortby = () => {
+    setSort("DESC");
+  };
+  const sortAsc = () => {
+    setSort("ASC");
   };
   const env = process.env.NEXT_PUBLIC_API_URL;
   console.log(env);
+
   return (
     <div>
       <main className="mt-5">
         <div className="row">
           <div className={`${styles.pageTitle} col-lg-4 `}>
+            {user.name && <h5>Selamat Datang {user.name}</h5>}
             <h3 className={`${styles.titlePage}`}>
               Discover Recipe & Delicious Food
             </h3>

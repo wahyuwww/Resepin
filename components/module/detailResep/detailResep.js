@@ -46,18 +46,18 @@ const DetailResep = () => {
                 <Image
                   src={imagePreview}
                   width={360}
-                  height={180}
+                  height={200}
                   layout="responsive"
-                  alt="Picture of the author"
-                  className={`${styles.imageCover} img img-responsive `}
+                  alt="Picture of the resep"
+                  className={`${styles.imageCover} img img-responsive`}
                 />
               )}
               <div className={`${styles.captionLogo}`}>
                 <button className={`${styles.simpan} btn`}>
-                  <img src="/assets/simpan.png" width="25px" alt="" />
+                  <img src="/assets/simpan.png" width="25px" alt="" className={styles.icon}/>
                 </button>
                 <button className={`${styles.tangan} btn ms-2`}>
-                  <img src="/assets/tangan.png" width="30px" alt="" />
+                  <img src="/assets/tangan.png" width="30px" alt="" className={styles.icon}/>
                 </button>
               </div>
             </div>

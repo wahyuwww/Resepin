@@ -38,7 +38,7 @@ const Details = () => {
             <div className="col-lg-8 mt-5 ">
               {video && (
                 <video
-                  autoPlay
+                  // autoPlay
                   width="700"
                   className={`${styles.videos}`}
                   controls

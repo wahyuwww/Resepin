@@ -1,44 +1,33 @@
-import React,{useState} from 'react'
-import style from './form.module.css'
+import React, { useState } from "react";
+import style from "./form.module.css";
 import Image from "next/image";
-import Button from '../../base/Button/button';
+import Button from "../../base/Button/button";
 import "bootstrap/dist/css/bootstrap.css";
-import Link from "next/link"
-import axios from 'axios'
+import Link from "next/link";
+import axios from "axios";
+import { loginUser } from "../../../redux/actions/userAction";
+import { useDispatch } from "react-redux";
+import Router, { useRouter } from "next/router";
 
 const Form = () => {
-  const getLogin = async () => {
-    try {
-      const result = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/login`);
-      const user = result.data;
-      console.log(result.data);
-     
-      const token = result.data.data.token;
-      localStorage.setItem("token", token);
-      localStorage.setItem("refreshToken", user.refreshToken);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const [formLogin, setFormLogin] = useState({
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
 
-  const handleChange = (e) => {
-    setFormLogin({
-      ...formLogin,
-      [e.target.name]: e.target.value,
-    });
+  const handleInput = (e) => {
+    e.persist();
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
-  console.log(formLogin.email);
-  const handleLogin = (e) => {
+  const handlesubmit = (e) => {
     e.preventDefault();
-    getLogin(formLogin);
+   dispatch(loginUser(loginData));
   };
+
   return (
-    <form onSubmit={handleLogin}>
+    <form onSubmit={handlesubmit}>
       <div className="mb-3">
         <label
           htmlFor="exampleFormControlInput1"
@@ -52,8 +41,8 @@ const Form = () => {
             name="email"
             className="form-control mb-3"
             placeholder="email"
-            value={formLogin.email}
-            onChange={handleChange}
+            value={loginData.email}
+            onChange={handleInput}
           />
           <label htmlFor="floatingInput">Email address</label>
         </div>
@@ -71,8 +60,8 @@ const Form = () => {
             name="password"
             className="form-control"
             placeholder="Password"
-            value={formLogin.password}
-            onChange={handleChange}
+            value={loginData.password}
+            onChange={handleInput}
           />
           <label htmlFor="floatingPassword">Password</label>
         </div>
@@ -82,7 +71,8 @@ const Form = () => {
       >
         <input
           className="form-check-input"
-          type={style.checkbox}
+          type="checkbox"
+          value=""
           id="flexCheckDefault"
         />
         <label className="form-check-label" htmlFor="flexCheckDefault">
@@ -107,6 +97,6 @@ const Form = () => {
       </label>
     </form>
   );
-}
+};
 
 export default Form;

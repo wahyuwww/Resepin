@@ -1,20 +1,27 @@
 import axios from 'axios'
 // import { ActionTypes } from "../constants/action-types";
+import Router from "next/router";
 
 
 
-export const loginUser = (dataForm, navigate)=> async(dispatch)=>{
+export const loginUser = (dataForm)=> async(dispatch)=>{
     try {
         dispatch({type: 'USER_LOGIN_PENDING'})
         const result = await axios.post(
-          `${process.env.REACT_APP_API_BACKEND}/auth/login`,
+          `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
           dataForm
         );
-      const user = result.data.data
+      // const user = result.data.data
+      const user = {
+        name: result.data.data.fullname,
+        id: result.data.data.iduser,
+        email: result.data.data.email,
+        token: result.data.data.token,
+        refreshToken: result.data.data.refreshToken,
+      };
       // console.log(result.data.data.token);
       const token = result.data.data.token
-        localStorage.setItem("token", token);
-        localStorage.setItem("refreshToken", user.refreshToken);
+       localStorage.setItem("Resep", JSON.stringify(user));
         dispatch({type: 'USER_LOGIN_SUCCESS', payload: user})
 
        dispatch({
@@ -22,27 +29,32 @@ export const loginUser = (dataForm, navigate)=> async(dispatch)=>{
          token: token.data,
          payload: user,
        });
-        navigate('/home')
-
+      Router.push('/home')
+      alert("berhasil login")
     } catch (error) {
-        console.log(error);
+      Router.push("/login");
+      alert("anda gagal login")
+      console.log(error);
     }
 }
 
-export const signUp = (dataForm, navigate) => async (dispatch) => {
+export const signUp = (dataForm) => async (dispatch) => {
   try {
     dispatch({ type: "USER_REGISTER_PENDING" });
     const result = await axios.post(
-      `${process.env.REACT_APP_API_BACKEND}/auth/register`,
+      `${process.env.NEXT_PUBLIC_API_URL}/auth/register`,
       dataForm
     );
-    const user = result.data.data;
-    
-    localStorage.setItem("token", user.token);
-    localStorage.setItem("refreshToken", user.refreshToken);
+      const user = result.data.data;
+
+      localStorage.setItem("token", user.token);
+      localStorage.setItem("refreshToken", user.refreshToken);
     dispatch({ type: "USER_REGISTER_SUCCESS", payload: user });
-    navigate("/login");
+    Router.push("/login");
+    alert("berhasil daftar silahkan login");
   } catch (error) {
+     Router.push("/login");
+     alert("anda gagal daftar");
     console.log(error);
   }
 };
@@ -59,17 +71,7 @@ export const signOut = () => {
   };
 };
 
-export const loadUser = () => {
-  return (dispatch, getState) => {
-    const token = getState().auth.token;
-    if (token) {
-      dispatch({
-        type: "USER_LOADED",
-        token,
-      });
-    } else return null;
-  };
-};
+
 
 // export const signUp = (navigate,dataForm) => {
 //     return async (dispatch) => {

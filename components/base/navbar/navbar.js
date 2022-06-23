@@ -5,8 +5,9 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Link from "next/link";
 import style from "./navbar.module.css"
-
+import { useDispatch, useSelector } from "react-redux";
 const Navbars = ({ classAdd, classHome, classProfil }) => {
+  
   return (
     <>
       <header>
