@@ -23,6 +23,7 @@ const Home = () => {
     sort: "",
     search: "",
   });
+  console.log(resep)
   const [sort, setSort] = useState("ASC");
   const [search, setSearch] = useState("");
   console.log(paginate);
