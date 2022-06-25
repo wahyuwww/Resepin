@@ -31,7 +31,7 @@ const Home = () => {
     try {
       const result = await axios({
         method: "GET",
-        baseURL: "http://localhost:5000/",
+        baseURL: `${process.env.NEXT_PUBLIC_API_URL}`,
         url: `/food/filter/?page=${counter}&type=${sort}&search=${search}`,
       });
       // console.log(result.data.pagination);

@@ -15,7 +15,7 @@ const Profils = () => {
       try {
         const result = await axios({
           method: "GET",
-          baseURL: "http://localhost:5000/",
+          baseURL: `${process.env.NEXT_PUBLIC_API_URL}`,
           url: "/food",
         });
         console.log(result.data.data);
