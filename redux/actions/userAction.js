@@ -16,21 +16,29 @@ export const loginUser = (dataForm)=> async(dispatch)=>{
         name: result.data.data.fullname,
         id: result.data.data.iduser,
         email: result.data.data.email,
+        status: result.data.data.active,
         token: result.data.data.token,
         refreshToken: result.data.data.refreshToken,
       };
+      // console.log(user.status == 0)
+      if (user.status == 0) {
+        alert('maaf anda belum activasi')
+        Router.push('/login')
+      }
       // console.log(result.data.data.token);
-      const token = result.data.data.token
-       localStorage.setItem("Resep", JSON.stringify(user));
-        dispatch({type: 'USER_LOGIN_SUCCESS', payload: user})
+     if (user.status == 1) {
+      const token = result.data.data.token;
+      localStorage.setItem("Resep", JSON.stringify(user));
+      dispatch({ type: "USER_LOGIN_SUCCESS", payload: user });
 
-       dispatch({
-         type: "USER_LOGIN_SUCCESS",
-         token: token.data,
-         payload: user,
-       });
-      Router.push('/home')
-      alert("berhasil login")
+      dispatch({
+        type: "USER_LOGIN_SUCCESS",
+        token: token.data,
+        payload: user,
+      });
+      Router.push("/home");
+      alert("berhasil login");
+     }
     } catch (error) {
       Router.push("/login");
       alert("anda gagal login")
