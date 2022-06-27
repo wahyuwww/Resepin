@@ -38,7 +38,7 @@ const Profils = () => {
 
     const deletePost = async (id) => {
       await axios.delete(`http://localhost:5000/food/${id}`);
-      // alert("berhasil menghapus yaa")
+      alert("berhasil menghapus yaa")
       
       refreshData();
     };
@@ -82,7 +82,7 @@ const Profils = () => {
                 {resep.map((item) => (
                   <div className="col" key={item.idfood}>
                     <div className="card shadow-sm ms-1">
-                      <Link href={`/editReciped/${item.idfood}`}>
+                      <Link href={`/Resepin/editReciped/${item.idfood}`}>
                         <a className={style.iconedit}>
                           {" "}
                           <BsFillPencilFill className={style.pen} />

@@ -21,7 +21,7 @@ const DetailResep = () => {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/food/${id}`
       );
-      console.log(response.data.data);
+      console.log(response.data);
       setImagePreview(response.data.data[0].image);
       setTitle(response.data.data[0].title);
       setFood(response.data.data[0].idfood);
@@ -32,7 +32,7 @@ const DetailResep = () => {
       console.log(error);
     }
   };
-  console.log(typeof ingrediens)
+  console.log(id);
   useEffect(() => {
     getFoodById(id);
   }, [id]);

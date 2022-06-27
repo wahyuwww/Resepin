@@ -25,7 +25,7 @@ const Navbars = ({ classAdd, classHome, classProfil }) => {
                       </a>
                     </li>
                   </Link>
-                  <Link href="/addReciped">
+                  <Link href="/Resepin/addReciped">
                     <li className="nav-item ms-5">
                       <a className={classAdd} href="#">
                         Add Recipe

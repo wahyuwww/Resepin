@@ -4,8 +4,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import styles from "./style.module.css";
 import axios from "axios";
 import Router from "next/router";
-import Input from '../../../components/base/input/input'
-import Button from '../../../components/base/Button/button'
+import Input from "../../../components/base/input/input";
+import Button from "../../../components/base/Button/button";
 
 const AddRecipe = () => {
   const [image, setImage] = useState("");
@@ -30,21 +30,21 @@ const AddRecipe = () => {
         alert("anda berhasil mengupload resep");
       })
       .catch((error) => {
-        alert('isi yang benar yaa')
+        alert("isi yang benar yaa");
         console.log(error);
       });
   };
-    const onImageUpload = (e) => {
-      const file = e.target.files[0];
-      console.log(file)
-      setImage(file);
-    };
-  const onVideoUpload = (e) => {
-      const file = e.target.files[0];
-      setVideo(file);
-      console.log(e.target.files[0]);
+  const onImageUpload = (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    setImage(file);
   };
-  
+  const onVideoUpload = (e) => {
+    const file = e.target.files[0];
+    setVideo(file);
+    console.log(e.target.files[0]);
+  };
+
   return (
     <>
       <main className="mt-5">
@@ -100,8 +100,11 @@ const AddRecipe = () => {
                     accept="video/*"
                   />
                 </div>
-                <Button className={`${styles.btnAdd} btn`} type="submit" title="Post">
-                </Button>
+                <Button
+                  className={`${styles.btnAdd} btn`}
+                  type="submit"
+                  title="Post"
+                ></Button>
               </form>
             </div>
           </div>
@@ -110,5 +113,8 @@ const AddRecipe = () => {
     </>
   );
 };
+
+
+
 
 export default AddRecipe;

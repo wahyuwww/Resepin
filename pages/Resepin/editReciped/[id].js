@@ -1,7 +1,7 @@
 import React from "react";
-import Footer from "../../components/base/footer/footer";
-import Navbars from "../../components/base/navbar/navbar";
-import Edit from "../../components/module/addRecipe/edit";
+import Footer from "../../../components/base/footer/footer";
+import Navbars from "../../../components/base/navbar/navbar";
+import Edit from "../../../components/module/addRecipe/edit";
 import styles from "./addreceiped.module.css";
 
 
