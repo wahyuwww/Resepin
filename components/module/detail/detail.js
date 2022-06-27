@@ -5,32 +5,31 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-
 const Details = () => {
   const [title, setTitle] = useState("");
   const [video, setVideo] = useState("");
   const [create, setCreate] = useState("");
- const router = useRouter();
- const id = router.query.id;
+  const router = useRouter();
+  const id = router.query.id;
 
- const getFoodById = async (id) => {
-   try {
-     const response = await axios.get(
-       `${process.env.NEXT_PUBLIC_API_URL}/food/${id}`
-     );
-     console.log(response.data.data);
-     setVideo(response.data.data[0].video.slice(1, -1).slice(1,-1).split(",")[0]);
-     setTitle(response.data.data[0].title);
-    setCreate(response.data.data[0].created_at);
-   } catch (error) {
-     console.log(error);
-   }
+  const getFoodById = async (id) => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/food/${id}`
+      );
+      console.log(response.data.data[0].video);
+      setVideo(response.data.data[0].video);
+      setTitle(response.data.data[0].title);
+      setCreate(response.data.data[0].created_at);
+    } catch (error) {
+      console.log(error);
+    }
   };
   // const data = new Date().toISOString().slice(0, 19).replace("T", " ");
   // console.log(data)
- useEffect(() => {
-   getFoodById(id);
- }, [id]);
+  useEffect(() => {
+    getFoodById(id);
+  }, [id]);
   return (
     <>
       <main className="mt-5">
