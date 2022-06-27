@@ -103,12 +103,15 @@ const Content = ({ req }) => {
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item>
-                  <button className="btn btn-info me-3" onClick={sortAsc}>
+                  <button
+                    className={`${styles.sortAsc} btn me-3`}
+                    onClick={sortAsc}
+                  >
                     Judul Resep A-Z
                   </button>
                 </Dropdown.Item>
                 <Dropdown.Item>
-                  <button className="btn btn-success" onClick={sortby}>
+                  <button className={`${styles.sortDsc} btn `} onClick={sortby}>
                     Judul Resep Z-A
                   </button>
                 </Dropdown.Item>
