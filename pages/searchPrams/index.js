@@ -159,7 +159,6 @@ const Search = () => {
                 </div>
               ))}
             </div>
-            <h3>{paginate.totalPage}</h3>
             {paginate.totalPage <= resep.length && (
               <div
                 className={`${styles.pagination} row row-cols-4 row-cols-lg-12 align-items-center g-1 mt-5`}
