@@ -22,12 +22,25 @@ export const loginUser = (dataForm)=> async(dispatch)=>{
         refreshToken: result.data.data.refreshToken,
       };
       // console.log(user.status == 0)
-      if (user.status == 0) {
-        alert('maaf anda belum activasi')
-        Router.push('/login')
-      }
-      // console.log(result.data.data.token);
-     if (user.status == 1) {
+    //   if (user.status == 0) {
+    //     alert('maaf anda belum activasi')
+    //     Router.push('/login')
+    //   }
+    //   // console.log(result.data.data.token);
+    //  if (user.status == 1) {
+    //   const token = result.data.data.token;
+    //   localStorage.setItem("Resep", JSON.stringify(user));
+    //   dispatch({ type: "USER_LOGIN_SUCCESS", payload: user });
+
+    //   dispatch({
+    //     type: "USER_LOGIN_SUCCESS",
+    //     token: token.data,
+    //     payload: user,
+    //   });
+    //   Router.push("/home");
+    //   alert("berhasil login");
+    //  }
+
       const token = result.data.data.token;
       localStorage.setItem("Resep", JSON.stringify(user));
       dispatch({ type: "USER_LOGIN_SUCCESS", payload: user });
@@ -39,7 +52,6 @@ export const loginUser = (dataForm)=> async(dispatch)=>{
       });
       Router.push("/home");
       alert("berhasil login");
-     }
     } catch (error) {
       Router.push("/login");
       alert("anda gagal login")
