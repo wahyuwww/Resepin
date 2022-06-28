@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Navbars from "../../../components/base/navbar/navbar";
 import "bootstrap/dist/css/bootstrap.css";
 import styles from "../../../components/module/addRecipe/style.module.css";
@@ -10,7 +10,7 @@ import Input from "../../../components/base/input/input";
 import Router from "next/router";
 
 
-const AddReciped = () => {
+const AddReciped = ({isAuth}) => {
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
   const [ingrediens, setIngrediens] = useState("");
@@ -26,6 +26,7 @@ const AddReciped = () => {
     await axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/food/`, formData, {
         "content-type": "multipart/form-data",
+        withCredentials: true,
       })
       .then((res) => {
         console.log(res);
@@ -47,6 +48,12 @@ const AddReciped = () => {
     setVideo(file);
     console.log(e.target.files[0]);
   };
+    useEffect(() => {
+      if (isAuth === false) {
+        alert('anda tidak bisa disini')
+        Router.push("/login");
+      }
+    }, [isAuth]);
   return (
     <>
       <Navbars
@@ -105,5 +112,18 @@ const AddReciped = () => {
     </>
   );
 };
+export const getServerSideProps = async (context) => {
+  try {
+    let isAuth = false;
+    if (context.req.headers.cookie) {
+      isAuth = true;
+    }
 
+    return {
+      props: { isAuth },
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
 export default AddReciped;

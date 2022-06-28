@@ -25,7 +25,7 @@ const AddRecipe = () => {
         "content-type": "multipart/form-data",
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         Router.push("/profil");
         alert("anda berhasil mengupload resep");
       })
@@ -36,13 +36,13 @@ const AddRecipe = () => {
   };
   const onImageUpload = (e) => {
     const file = e.target.files[0];
-    console.log(file);
+    // console.log(file);
     setImage(file);
   };
   const onVideoUpload = (e) => {
     const file = e.target.files[0];
     setVideo(file);
-    console.log(e.target.files[0]);
+    // console.log(e.target.files[0]);
   };
 
   return (

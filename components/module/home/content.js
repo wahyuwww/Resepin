@@ -13,22 +13,18 @@ import {
   BsFillArrowRightSquareFill,
 } from "react-icons/bs";
 
-
-
-const Content = ({ req }) => {
-  console.log(req);
+const Content = () => {
   const [resep, setResep] = useState([]);
   const [counter, setCounter] = useState(1);
   const { user } = useSelector((state) => state.auth);
   const [searchValue, setSearchValue] = useState("");
-  console.log(user);
   const [paginate, setPagination] = useState({
     currentPage: 1,
     limit: 6,
     sort: "",
     search: "",
   });
-  console.log(resep);
+
 
   const handleSearchInput = (e) => {
     e.persist();
@@ -42,7 +38,7 @@ const Content = ({ req }) => {
   };
 
   const [sort, setSort] = useState("ASC");
-  console.log(paginate);
+  // console.log(paginate);
   async function fetchData(counter, sort) {
     try {
       const result = await axios({
@@ -54,19 +50,19 @@ const Content = ({ req }) => {
       setPagination(result.data.pagination);
       setResep(result.data.data);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
   useEffect(() => {
     fetchData(counter, sort);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [counter, sort]);
-
+  
   const next = () => {
     setCounter(
       counter === paginate.totalPage ? paginate.totalPage : counter + 1
     );
-    console.log(counter);
+    // console.log(counter);
   };
   const previos = () => {
     setCounter(counter <= 1 ? 1 : counter - 1);
@@ -103,15 +99,12 @@ const Content = ({ req }) => {
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item>
-                  <button
-                    className={`${styles.sortAsc} btn me-3`}
-                    onClick={sortAsc}
-                  >
+                  <button className="btn btn-info me-3" onClick={sortAsc}>
                     Judul Resep A-Z
                   </button>
                 </Dropdown.Item>
                 <Dropdown.Item>
-                  <button className={`${styles.sortDsc} btn `} onClick={sortby}>
+                  <button className="btn btn-success" onClick={sortby}>
                     Judul Resep Z-A
                   </button>
                 </Dropdown.Item>
@@ -119,7 +112,9 @@ const Content = ({ req }) => {
             </Dropdown>
           </div>
           <div className="row  row-cols-2 row-cols-lg-3 align-items-center g-3 mt-2">
-            {resep.map((reseps) => (
+            {!resep ? (
+              <h4>Loading...</h4>
+            ) : (resep.map((reseps) => (
               <div className="col " key={reseps.idfood}>
                 <div
                   className={`${styles.categories} card text-center d-flex `}
@@ -139,7 +134,7 @@ const Content = ({ req }) => {
                   </div>
                 </div>
               </div>
-            ))}
+            )))}
           </div>
           <div
             className={`${styles.pagination} row row-cols-4 row-cols-lg-12 align-items-center g-1 mt-5`}
@@ -169,15 +164,16 @@ const Content = ({ req }) => {
 };
 export async function getServerSideProps(context) {
   const cookie = context.req.headers.cookie;
+  console.log(cookie)
   if (!cookie) {
     // Router.replace('/login')
     context.res.writeHead(302, {
-      Location: `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+      Location: `http://localhost:3000/login`,
     });
     return {};
   }
   const { data: RespData } = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/food`,
+    "http://localhost:5000/food",
     {
       withCredentials: true,
       headers: {
@@ -185,15 +181,13 @@ export async function getServerSideProps(context) {
       },
     }
   );
-
-  //http request
-  const req = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/food`);
-  const res = await req.data;
-
+  // console.log(data);
+  const name = "Wahyu";
   return {
     props: {
-      posts: req, // <-- assign response
-    },
+      name: name,
+      resepin: RespData.data,
+    }, // will be passed to the page component as props
   };
 }
 export default Content;

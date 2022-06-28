@@ -2,26 +2,20 @@
 import React, { useState, useEffect } from "react";
 import styles from "./style.module.css";
 import "bootstrap/dist/css/bootstrap.css";
-import Link from "next/link";
-import Image from "next/image";
 import axios from "axios";
-import { Dropdown } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { useRouter, useSearchParams } from "next/router";
-import {
-  BsFillArrowLeftSquareFill,
-  BsFillArrowRightSquareFill,
-} from "react-icons/bs";
-import Content from './content'
+import { useSelector } from "react-redux";;
+import Content from "./content";
 
-
-const Home = () => {
-   const { user } = useSelector((state) => state.auth);
+const Home = ({ resep, name, resepin }) => {
+  const { user } = useSelector((state) => state.auth);
+  console.log(resepin);
   return (
     <div>
       <main className="mt-5">
         <div className="row">
           <div className={`${styles.pageTitle} col-lg-4 `}>
+            <h4>resep :  {resep}</h4>
+            <h4>nama: {name}</h4>
             {user.name && <h5>Selamat Datang {user.name}</h5>}
             <h3 className={`${styles.titlePage}`}>
               Discover Recipe & Delicious Food
@@ -100,4 +94,27 @@ const Home = () => {
   );
 };
 
+
+export async function getServerSideProps(context) {
+  const { data: RespData } = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/food`
+  );
+  console.log(RespData)
+  const name = "wahyu";
+  console.log(name)
+  return {
+    props: {
+      name: name,
+      resep: RespData.data,
+    },
+  };
+}
+
+Home.getInitialProps = async (ctx) => {
+  const { data: RespData } = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/food`,
+  );
+  // console.log(RespData);
+  return { resepin: RespData.data };
+};
 export default Home;

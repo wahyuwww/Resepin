@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-const Details = () => {
+const Details = ({ resep }) => {
   const [title, setTitle] = useState("");
   const [video, setVideo] = useState("");
   const [create, setCreate] = useState("");
@@ -36,6 +36,7 @@ const Details = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-8 mt-5 ">
+              <h5>resep {resep?.title}</h5>
               {video && (
                 <video
                   // autoPlay
@@ -92,4 +93,23 @@ const Details = () => {
   );
 };
 
+
+export const getServerSideProps = async (context) => {
+  try {
+    // server side props cannot return object
+    const recipeID = context.params.detail;
+    console.log(recipeID);
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/food/${id}`
+    );
+    const result = data.data;
+
+    return {
+      props: { recipe: result },
+      // props: {}
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
 export default Details;

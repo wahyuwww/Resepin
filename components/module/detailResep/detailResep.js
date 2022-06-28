@@ -138,5 +138,37 @@ const DetailResep = () => {
     </>
   );
 };
+export async function getStaticPaths(context) {
+  // const id = context.params.id
+  const { data: RespData } = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/food`
+  );
+  console.log(ResData)
+  const paths = RespData.data.map((item) => {
+    return {
+      params: {
+        id: item.id + "",
+      },
+    };
+  });
+  console.log(paths);
+  return {
+    paths: paths,
+    fallback: true, // false or 'blocking'
+  };
+}
 
+export async function getStaticProps() {
+  const id = context.params.id;
+  const { data: RespData } = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/food/${id}`
+  );
+  // setTimeout(()=>{
+  return {
+    props: {
+      resep: RespData.data,
+    },
+  };
+  // }, 2000)
+}
 export default DetailResep;

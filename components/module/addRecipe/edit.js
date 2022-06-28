@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import styles from "./style.module.css";
 import axios from "axios";
@@ -8,14 +8,13 @@ import { useRouter } from "next/router";
 import Input from "../../../components/base/input/input";
 import Button from "../../../components/base/Button/button";
 
-
 const EditReceped = () => {
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
   const [ingrediens, setIngrediens] = useState("");
   const [video, setVideo] = useState("");
- const router = useRouter();
- const id = router.query.id;
+  const router = useRouter();
+  const id = router.query.id;
   const submit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -28,7 +27,7 @@ const EditReceped = () => {
         "content-type": "multipart/form-data",
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         Router.push("/profil");
         alert("anda berhasil mengupdate");
       })
@@ -38,32 +37,31 @@ const EditReceped = () => {
   };
   const onImageUpload = (e) => {
     const file = e.target.files[0];
-    console.log(file);
+    // console.log(file);
     setImage(file);
   };
   const onVideoUpload = (e) => {
     const file = e.target.files[0];
     setVideo(file);
-    console.log(e.target.files[0]);
+    // console.log(e.target.files[0]);
   };
-   const getFoodtById = async (id) => {
-     try {
-       const response = await axios.get(
-         `${process.env.NEXT_PUBLIC_API_URL}/food/${id}`
-       );
-       console.log(response.data.data);
-       setTitle(response.data.data[0].title);
-       setIngrediens(response.data.data[0].ingrediens);
-     } catch (error) {
-       console.log(error);
-     }
-   };
-   useEffect(() => {
-     getFoodtById(id);
-   // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, []);
-    
-    
+  const getFoodtById = async (id) => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/food/${id}`
+      );
+      console.log(response.data.data);
+      setTitle(response.data.data[0].title);
+      setIngrediens(response.data.data[0].ingrediens);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getFoodtById(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <main className="mt-5">
