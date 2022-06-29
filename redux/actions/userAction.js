@@ -7,7 +7,7 @@ export const loginUser = (dataForm) => async (dispatch) => {
   try {
     dispatch({ type: "USER_LOGIN_PENDING" });
     const result = await axios.post(
-      `http://localhost:5000/auth/login`,
+      `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
       dataForm,
       { withCredentials: true }
     );
