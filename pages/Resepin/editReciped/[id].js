@@ -8,13 +8,23 @@ import styles from "../../../components/module/addRecipe/style.module.css";
 import axios from "axios";
 import Router from "next/router";
 import { useRouter } from "next/router";
+import Login from "../../../components/base/Login";
+import Logout from "../../../components/base/Logout";
+import Swal from "sweetalert2";
 
-const EditReciped = ({ resep }) => {
-  console.log(resep);
-  const [image, setImage] = useState("");
+
+const EditReciped = ({ resep, isAuth, img, videos }) => {
+  console.log(img);
+  const [image, setImage] = useState(
+    img ||
+      "http://res.cloudinary.com/dwdpjepcr/image/upload/v1656516752/kyr46k6zvanumeppj4w2.png"
+  );
   const [title, setTitle] = useState("");
   const [ingrediens, setIngrediens] = useState("");
-  const [video, setVideo] = useState("");
+  const [video, setVideo] = useState(videos);
+  console.log(image);
+  const [previewImg, setImagePreview] = useState(img);
+
   const router = useRouter();
   const id = router.query.id;
   const submit = async (e) => {
@@ -32,9 +42,18 @@ const EditReciped = ({ resep }) => {
       .then((res) => {
         // console.log(res);
         Router.push("/profil");
-        alert("anda berhasil mengupdate");
+        Swal.fire({
+          icon: "success",
+          title: "Berhasil mengupdate resep",
+          text: `resep : ${title}`,
+        });
       })
       .catch((error) => {
+         Swal.fire({
+           icon: "error",
+           title: "Oops...",
+           text: "data yang anda inputkan salah",
+         });
         console.log(error);
       });
   };
@@ -42,6 +61,7 @@ const EditReciped = ({ resep }) => {
     const file = e.target.files[0];
     // console.log(file);
     setImage(file);
+    setImagePreview(URL.createObjectURL(file));
   };
   const onVideoUpload = (e) => {
     const file = e.target.files[0];
@@ -61,9 +81,16 @@ const EditReciped = ({ resep }) => {
         classAdd={style.navActive}
         classHome={style.navNon}
         classProfil={style.navNon}
-      ></Navbars>
+      >
+        {isAuth && <Logout></Logout>}
+        {!isAuth && <Login></Login>}
+      </Navbars>
       <Form
         onSubmit={submit}
+        style={{
+          backgroundImage: `url(${previewImg})`,
+          objectFit: "cover",
+        }}
         contentImage={
           <>
             <input
@@ -113,17 +140,41 @@ const EditReciped = ({ resep }) => {
     </>
   );
 };
+
 export async function getServerSideProps(context) {
   try {
+    const cookie = context.req.headers.cookie;
+    console.log(cookie);
+    if (!cookie) {
+      context.res.writeHead(302, {
+        Location: `http://localhost:3000/login`,
+      });
+      return {};
+    }
+    let isAuth = false;
+
+    if (cookie) {
+      isAuth = true;
+    }
     const id = context.params.id;
     console.log(id);
     const { data: RespData } = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/food/${id}`
+      `${process.env.NEXT_PUBLIC_API_URL}/food/${id}`,
+      {
+        withCredentials: true,
+        headers: {
+          Cookie: cookie,
+        },
+      }
     );
-    console.log(RespData.data);
+    const img = RespData.data[0].image;
+    const video = RespData.data[0].video;
     return {
       props: {
         resep: RespData.data[0],
+        isAuth: isAuth,
+        img: img,
+        videos: video,
       },
     };
   } catch (error) {

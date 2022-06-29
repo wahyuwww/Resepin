@@ -1,7 +1,7 @@
 import Footer from "../../components/base/footer/footer";
 import Navbars from "../../components/base/navbar/navbar";
 import React, { useState, useEffect } from "react";
-import styles from "../../components/module/home/style.module.css";
+import styles from "../../components/module/homes/style.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Link from "next/link";
 import Image from "next/image";
@@ -14,9 +14,10 @@ import {
   BsFillArrowRightSquareFill,
 } from "react-icons/bs";
 import style from "../../styles/addreceiped.module.css";
+import Logout from "../../components/base/Logout";
+import Login from "../../components/base/Login";
 
-
-const Search = () => {
+const Search = ({ isAuth }) => {
   const router = useRouter();
   const [resep, setResep] = useState([]);
   const [counter, setCounter] = useState(1);
@@ -81,7 +82,18 @@ const Search = () => {
         classAdd={style.navNon}
         classHome={style.navActive}
         classProfil={style.navNon}
-      ></Navbars>
+      >
+        {isAuth && (
+          <>
+            <Logout></Logout>
+          </>
+        )}
+        {!isAuth && (
+          <>
+            <Login></Login>
+          </>
+        )}
+      </Navbars>
       <div>
         <main className="mt-5">
           <div className="container mt-5">
@@ -189,5 +201,20 @@ const Search = () => {
     </div>
   );
 };
+export const getServerSideProps = async (context) => {
+  try {
+    let isAuth = false;
 
+    if (context.req.headers.cookie) {
+      isAuth = true;
+    }
+    const cookie = context.req.headers.cookie;
+    console.log(cookie);
+    return {
+      props: { isAuth },
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
 export default Search;

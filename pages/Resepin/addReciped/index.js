@@ -1,20 +1,23 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Navbars from "../../../components/base/navbar/navbar";
 import "bootstrap/dist/css/bootstrap.css";
 import styles from "../../../components/module/addRecipe/style.module.css";
 import Footer from "../../../components/base/footer/footer";
 import Form from "../../../components/base/form";
-import axios from "axios"
+import axios from "axios";
 import style from "../../../styles/addreceiped.module.css";
 import Input from "../../../components/base/input/input";
 import Router from "next/router";
+import Login from "../../../components/base/Login";
+import Logout from "../../../components/base/Logout";
+import Swal from "sweetalert2";
 
-
-const AddReciped = ({isAuth}) => {
+const AddReciped = ({ isAuth }) => {
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
   const [ingrediens, setIngrediens] = useState("");
   const [video, setVideo] = useState("");
+  const [previewImg, setImagePreview] = useState("");
 
   const submit = async (e) => {
     e.preventDefault();
@@ -26,15 +29,23 @@ const AddReciped = ({isAuth}) => {
     await axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/food/`, formData, {
         "content-type": "multipart/form-data",
-        withCredentials: true,
+        withCredentials: true
       })
       .then((res) => {
         console.log(res);
         Router.push("/profil");
-        alert("anda berhasil mengupload resep");
+        Swal.fire({
+          icon: "success",
+          title: "Berhasil mengupload resep",
+          text: `resep : ${title}`,
+        });
       })
       .catch((error) => {
-        alert("isi yang benar yaa");
+         Swal.fire({
+           icon: "error",
+           title: "Oops...",
+           text: "data yang anda inputkan salah",
+         });
         console.log(error);
       });
   };
@@ -42,27 +53,35 @@ const AddReciped = ({isAuth}) => {
     const file = e.target.files[0];
     console.log(file);
     setImage(file);
+     setImagePreview(URL.createObjectURL(file));
   };
   const onVideoUpload = (e) => {
     const file = e.target.files[0];
     setVideo(file);
     console.log(e.target.files[0]);
   };
-    useEffect(() => {
-      if (isAuth === false) {
-        alert('anda tidak bisa disini')
-        Router.push("/login");
-      }
-    }, [isAuth]);
+  useEffect(() => {
+    if (isAuth === false) {
+     Swal.fire("belum login yaa ?", "silahkan login", "question");
+      Router.push("/login");
+    }
+  }, [isAuth]);
   return (
     <>
       <Navbars
         classAdd={style.navActive}
         classHome={style.navNon}
         classProfil={style.navNon}
-      ></Navbars>
+      >
+        {isAuth && <Logout></Logout>}
+        {!isAuth && <Login></Login>}
+      </Navbars>
       <Form
         onSubmit={submit}
+        style={{
+          backgroundImage: `url(${previewImg})`,
+          objectFit: "cover",
+        }}
         contentImage={
           <>
             <input
@@ -112,13 +131,15 @@ const AddReciped = ({isAuth}) => {
     </>
   );
 };
+
+
 export const getServerSideProps = async (context) => {
   try {
     let isAuth = false;
+    
     if (context.req.headers.cookie) {
       isAuth = true;
     }
-
     return {
       props: { isAuth },
     };

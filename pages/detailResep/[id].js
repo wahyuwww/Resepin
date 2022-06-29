@@ -1,35 +1,43 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
-import Footer from '../../components/base/footer/footer'
-import Navbars from '../../components/base/navbar/navbar'
-import DetailResep from '../../components/module/detailResep/detailResep';
+import Footer from "../../components/base/footer/footer";
+import Navbars from "../../components/base/navbar/navbar";
 import style from "./addreceiped.module.css";
 import styles from "../../components/module/detailResep/style.module.css";
 import axios from "axios";
-import Link from "next/link"
-import Image from "next/image"
+import Link from "next/link";
+import Image from "next/image";
+import Login from "../../components/base/Login";
+import Logout from "../../components/base/Logout";
 
-const DetailReseps = ({ resep }) => {
-   const [title, setTitle] = useState("");
-   const [idfood, setFood] = useState("");
-   const [ingrediens, setIngrediens] = useState("");
+const DetailReseps = ({ resep, isAuth }) => {
+  const [title, setTitle] = useState("");
+  const [idfood, setFood] = useState("");
+  const [ingrediens, setIngrediens] = useState("");
   const [imagePreview, setImagePreview] = useState("");
   console.log(idfood);
-   // const data = new Date().toISOString().slice(0, 19).replace("T", " ");
-   // console.log(data)
-   useEffect(() => {
-     setTitle(resep.title);
-     setFood(resep.idfood);
-     setIngrediens((resep.ingrediens).split(','));
-     setImagePreview(resep.image);
-   }, [resep]);
+  // const data = new Date().toISOString().slice(0, 19).replace("T", " ");
+  // console.log(data)
+  useEffect(() => {
+    setTitle(resep.title);
+    setFood(resep.idfood);
+    setIngrediens(resep.ingrediens.split(","));
+    setImagePreview(resep.image);
+  }, [resep]);
   return (
     <div>
       <Navbars
         classAdd={style.navNon}
         classHome={style.navActive}
         classProfil={style.navNon}
-      ></Navbars>
+      >
+        {isAuth && (
+          <Logout></Logout>
+        )}
+        {!isAuth && (
+          <Login></Login>
+        )}
+      </Navbars>
       <main className="mt-5">
         <div className="container slide">
           <div className="row">
@@ -139,20 +147,28 @@ const DetailReseps = ({ resep }) => {
   );
 };
 export async function getServerSideProps(context) {
- try {
-   const recipeID = context.params.id;
-   console.log(recipeID);
-   const { data: RespData } = await axios.get(
-     `${process.env.NEXT_PUBLIC_API_URL}/food/${recipeID}`
-   );
-   console.log(RespData.data[0]);
-   return {
-     props: {
-       resep: RespData.data[0],
-     },
-   };
- } catch (error) {
-  console.log(error)
- }
+  try {
+    const cookie = context.req.headers.cookie;
+    console.log(cookie);
+    const recipeID = context.params.id;
+    console.log(recipeID);
+     let isAuth = false;
+
+     if (cookie) {
+       isAuth = true;
+     }
+    const { data: RespData } = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/food/${recipeID}`
+    );
+    console.log(RespData.data[0]);
+    return {
+      props: {
+        isAuth:isAuth,
+        resep: RespData.data[0],
+      },
+    };
+  } catch (error) {
+    console.log(error);
+  }
 }
 export default DetailReseps;

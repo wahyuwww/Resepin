@@ -1,41 +1,53 @@
-import React,{useState,useEffect} from "react";
+/* eslint-disable @next/next/no-img-element */
+import React, { useState, useEffect } from "react";
 import Footer from "../../components/base/footer/footer";
 import Navbars from "../../components/base/navbar/navbar";
-import Details from "../../components/module/detail/detail";
 import style from "./addreceiped.module.css";
 import styles from "../../components/module/detail/style.module.css";
 import axios from "axios";
+import { useRouter } from "next/router";
+import Link from "next/link"
+import Logout from "../../components/base/Logout";
+import Login from "../../components/base/Login";
 
-const Detail = ({ resepin }) => {
+const Detail = ({ resepin}) => {
   const [title, setTitle] = useState("");
   const [video, setVideo] = useState("");
   const [create, setCreate] = useState("");
   // const data = new Date().toISOString().slice(0, 19).replace("T", " ");
-  
+
   useEffect(() => {
     setTitle(resepin.title);
     // setVideo((resepin.video.slice(1,-1).split(",")[0]).slice(1,-1))
-    setVideo(resepin.video)
+    setVideo(resepin.video);
     setCreate(resepin.created_at);
   }, [resepin]);
-  console.log(video)
+
+  const router = useRouter();
+  const titles = title.slice(0, 1).toUpperCase() + title.substr(1);
+  if (router.isFallback) {
+    return <h3>loading......</h3>;
+  }
+
   return (
     <>
       <Navbars
         classAdd={style.navNon}
         classHome={style.navActive}
         classProfil={style.navNon}
-      ></Navbars>
+      >
+        <Logout></Logout>
+      </Navbars>
       <main className="mt-5">
         <div className="container">
           <div className="row">
             <div className="col-lg-8 mt-5 ">
-              <h5>resep {resepin?.title}</h5>
+              <h5 className="mb-2">{titles}</h5>
               {video && (
                 <video
                   // autoPlay
                   width="700"
-                  className={`${styles.videos}`}
+                  className={`${styles.videos} mt-2`}
                   controls
                 >
                   <source src={video} />
@@ -87,21 +99,30 @@ const Detail = ({ resepin }) => {
     </>
   );
 };
-export async function getServerSideProps(context) {
-  try {
-    const id = context.params.id;
-    console.log(id);
-    const { data: newData } = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/food/${id}`
-    );
-    console.log(newData.data[0]);
-    return {
-      props: {
-        resepin: newData.data[0],
-      },
-    };
-  } catch (error) {
-    console.log(error);
-  }
+
+export async function getStaticPaths() {
+  const { data: newData } = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/food`
+  );
+  const paths = newData.data.map((item) => ({
+    params: { id: item.idfood.toString() },
+  }));
+
+  return { paths, fallback: true };
 }
+
+export async function getStaticProps({ params}) {
+  console.log(params.id);
+  const { data: newData } = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/food/${params.id}`
+  );
+  console.log(newData.data[0]);
+  return {
+    props: {
+      resepin: newData.data[0],
+    },
+  };
+}
+
+
 export default Detail;
