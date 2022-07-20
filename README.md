@@ -73,21 +73,21 @@ NEXT_PUBLIC_API_URL=
 ## Features
 
 ### Landing
-  [![Screenshot-2022-06-15-004803.png](https://i.postimg.cc/G2w2t3m5/Screenshot-2022-06-15-004803.png)](https://postimg.cc/Z9HZDS38)
+
 ### Login
-  [![Fire-Shot-Capture-007-Recipe-Food-Web-App-recipefood-webapp-v2-vercel-app.png](https://i.postimg.cc/1t0RhXzK/Fire-Shot-Capture-007-Recipe-Food-Web-App-recipefood-webapp-v2-vercel-app.png)](https://postimg.cc/S2sbcyCX)
+ 
 ### Register
-  [![Fire-Shot-Capture-011-Recipe-Food-Web-App-recipefood-webapp-v2-vercel-app.png](https://i.postimg.cc/MT0s72sT/Fire-Shot-Capture-011-Recipe-Food-Web-App-recipefood-webapp-v2-vercel-app.png)](https://postimg.cc/zbBSNMYZ)
+
 ### Latest Recipe
-  [![Screenshot-2022-06-15-005615.png](https://i.postimg.cc/dQXqVtNm/Screenshot-2022-06-15-005615.png)](https://postimg.cc/jCHV8KbL)
+
 ### Read Recipe
-  [![Screenshot-2022-06-14-203717.png](https://i.postimg.cc/1R7HjbCj/Screenshot-2022-06-14-203717.png)](https://postimg.cc/6TRn7bNr)
+
 ### Search Recipe
-  [![Screenshot-2022-06-14-223652.png](https://i.postimg.cc/Jnfb1Cfr/Screenshot-2022-06-14-223652.png)](https://postimg.cc/Kk5KNwcw)
+
 ### Add Recipe and Edit Recipe
-  [![Screenshot-2022-06-14-215516.png](https://i.postimg.cc/7Zzr63Jq/Screenshot-2022-06-14-215516.png)](https://postimg.cc/RWvDpnTY)
+
 ### My Recipe
-  [![Screenshot-2022-06-14-221009.png](https://i.postimg.cc/fLTPxmyt/Screenshot-2022-06-14-221009.png)](https://postimg.cc/xkhgQkKn)
+
   
  ## Development
 Want to contribute? Great!
@@ -95,11 +95,11 @@ Want to contribute? Great!
 To fix a bug or enhance an existing module, follow these steps:
 
 - Fork the repo
-- Create a new branch (`git checkout -b improve-feature`)
+- Create a new branch (`git checkout -b improve-resepin`)
 - Make the appropriate changes in the files
 - Add changes to reflect the changes made
-- Commit your changes (`git commit -am 'Improve feature'`)
-- Push to the branch (`git push origin improve-feature`)
+- Commit your changes (`git commit -m 'Improve Resepin'`)
+- Push to the branch (`git push origin improve-resepin`)
 - Create a Pull Request 
 
 ## Bug / Feature Request
@@ -110,8 +110,8 @@ If you'd like to request a new function, feel free to do so by opening an issue 
 
 
 ## Back End
-https://github.com/hakamfaza/RESTfull_API_FoodRecipe
+https://github.com/wahyuwww/backend-resepin.git
 
 ## Contact
 
-Hakamfaza - [linkedin](https://www.linkedin.com/in/hakamfaza/) - hakamfaza@gmail.com
+Wahyu Dwi Purwanto - [linkedin](https://www.linkedin.com/in/wahyu-dwi-purwanto/) - wahyu.aan2508@gmail.com
