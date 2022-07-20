@@ -18,7 +18,7 @@
 [![license](https://img.shields.io/github/license/dec0dOS/amazing-github-template.svg?style=flat-square)](LICENSE)
 
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://github.com/wahyuwww/)
-[![made with hearth by Wahyu Dwi Purwanto](https://img.shields.io/badge/made%20with%20%E2%99%A5%20by-hakamfaza-ff1414.svg?style=flat-square)](https://github.com/wahyuwww/)
+[![made with hearth by Wahyu Dwi Purwanto](https://img.shields.io/badge/made%20with%20%E2%99%A5%20by-Wahyu-ff1414.svg?style=flat-square)](https://github.com/wahyuwww/)
 
 </div>
 
