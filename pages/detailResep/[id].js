@@ -93,7 +93,7 @@ const DetailReseps = ({ resep, isAuth }) => {
                   </button>
                 </Link>
               </div>
-              <div className={`${styles.play}`}>
+              {/* <div className={`${styles.play}`}>
                 <button className={`${styles.play} btn btn-warning `}>
                   <img src="/assets/Vector.png" width="10px" alt="" />
                 </button>
@@ -112,7 +112,7 @@ const DetailReseps = ({ resep, isAuth }) => {
                 <button className={`${styles.play} btn btn-warning `}>
                   <img src="/assets/Vector.png" width="10px" alt="" />
                 </button>
-              </div>
+              </div> */}
             </div>
             <div className="col-lg-12  mt-5">
               <div className="form-floating">
