@@ -1,34 +1,117 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<br/>
+<div align="center">
+<img src="https://i.postimg.cc/65pLzxB6/Group-4.png" width="auto" height="230" cover />
+ </div>
+ <div align="center">
+  <br />
+  <br />
+  <a href="https://github.com/dec0dOS/amazing-github-template/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
+  ·
+  <a href="https://github.com/dec0dOS/amazing-github-template/issues/new?assignees=&labels=enhancement&template=02_FEATURE_REQUEST.md&title=feat%3A+">Request a Feature</a>
+  .
+  <a href="https://github.com/dec0dOS/amazing-github-template/discussions">Ask a Question</a>
+</div>
 
-## Getting Started
+<div align="center">
+<br />
 
-First, run the development server:
+[![license](https://img.shields.io/github/license/dec0dOS/amazing-github-template.svg?style=flat-square)](LICENSE)
+
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://github.com/hakamfaza)
+[![made with hearth by hakamfaza](https://img.shields.io/badge/made%20with%20%E2%99%A5%20by-hakamfaza-ff1414.svg?style=flat-square)](https://github.com/hakamfaza)
+
+</div>
+
+## Recipe Food App
+
+Food Recipes is a website that provides interaction between users to share food recipes. Users can share food recipes, as well as get inspiration to try new recipes from other users. Before users can view / share recipes, users are required to log in or register an account first
+
+## Demo
+Here is a working live demo https://resepin.vercel.app/
+
+## Tech Stack
+
+**Client:** Next Js, Redux, Bootstrap
+
+**Server:** Node, Express
+
+## Run Locally
+
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
+  git clone https://github.com/wahyuwww/ResepinNext.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to the project directory
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```bash
+  cd ResepinNext
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Install dependencies
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+  npm install
+```
 
-## Learn More
+Start the server
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+  npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Environment Variables
 
-## Deploy on Vercel
+To run this project, you will need to add the following environment variables to your .env file
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+NEXT_PUBLIC_API_URL=
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+## Features
+
+### Landing
+  [![Screenshot-2022-06-15-004803.png](https://i.postimg.cc/G2w2t3m5/Screenshot-2022-06-15-004803.png)](https://postimg.cc/Z9HZDS38)
+### Login
+  [![Fire-Shot-Capture-007-Recipe-Food-Web-App-recipefood-webapp-v2-vercel-app.png](https://i.postimg.cc/1t0RhXzK/Fire-Shot-Capture-007-Recipe-Food-Web-App-recipefood-webapp-v2-vercel-app.png)](https://postimg.cc/S2sbcyCX)
+### Register
+  [![Fire-Shot-Capture-011-Recipe-Food-Web-App-recipefood-webapp-v2-vercel-app.png](https://i.postimg.cc/MT0s72sT/Fire-Shot-Capture-011-Recipe-Food-Web-App-recipefood-webapp-v2-vercel-app.png)](https://postimg.cc/zbBSNMYZ)
+### Latest Recipe
+  [![Screenshot-2022-06-15-005615.png](https://i.postimg.cc/dQXqVtNm/Screenshot-2022-06-15-005615.png)](https://postimg.cc/jCHV8KbL)
+### Read Recipe
+  [![Screenshot-2022-06-14-203717.png](https://i.postimg.cc/1R7HjbCj/Screenshot-2022-06-14-203717.png)](https://postimg.cc/6TRn7bNr)
+### Search Recipe
+  [![Screenshot-2022-06-14-223652.png](https://i.postimg.cc/Jnfb1Cfr/Screenshot-2022-06-14-223652.png)](https://postimg.cc/Kk5KNwcw)
+### Add Recipe and Edit Recipe
+  [![Screenshot-2022-06-14-215516.png](https://i.postimg.cc/7Zzr63Jq/Screenshot-2022-06-14-215516.png)](https://postimg.cc/RWvDpnTY)
+### My Recipe
+  [![Screenshot-2022-06-14-221009.png](https://i.postimg.cc/fLTPxmyt/Screenshot-2022-06-14-221009.png)](https://postimg.cc/xkhgQkKn)
+  
+ ## Development
+Want to contribute? Great!
+
+To fix a bug or enhance an existing module, follow these steps:
+
+- Fork the repo
+- Create a new branch (`git checkout -b improve-feature`)
+- Make the appropriate changes in the files
+- Add changes to reflect the changes made
+- Commit your changes (`git commit -am 'Improve feature'`)
+- Push to the branch (`git push origin improve-feature`)
+- Create a Pull Request 
+
+## Bug / Feature Request
+
+If you find a bug (the website couldn't handle the query and / or gave undesired results), kindly open an issue [here](https://github.com/iharsh234/WebApp/issues/new) by including your search query and the expected result.
+
+If you'd like to request a new function, feel free to do so by opening an issue [here](https://github.com/iharsh234/WebApp/issues/new). Please include sample queries and their corresponding results.
+
+
+## Back End
+https://github.com/hakamfaza/RESTfull_API_FoodRecipe
+
+## Contact
+
+Hakamfaza - [linkedin](https://www.linkedin.com/in/hakamfaza/) - hakamfaza@gmail.com

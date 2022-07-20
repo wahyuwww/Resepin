@@ -113,6 +113,7 @@ const FormRegister = () => {
                 type="checkbox"
                 value=""
                 id="flexCheckDefault"
+                required
               />
               <label className="form-check-label" htmlFor="flexCheckDefault">
                 I agree to terms & conditions

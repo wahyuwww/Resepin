@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import Link from "next/link"
 import Logout from "../../components/base/Logout";
 import Login from "../../components/base/Login";
+import moment from "moment";
 
 const Detail = ({ resepin}) => {
   const [title, setTitle] = useState("");
@@ -54,7 +55,7 @@ const Detail = ({ resepin}) => {
                 </video>
               )}
               <h3 className={`${styles.titleVideo} mt-3 `}>{title}</h3>
-              <p className="text-secondary mt-2">{create}</p>
+              <p className="text-secondary mt-2">{moment(create).format("LLLL")}</p>
             </div>
             <div className={`${styles.sugestion} col-lg-3 mb-5 `}>
               <h3 className={`${styles.next}`}>Next </h3>

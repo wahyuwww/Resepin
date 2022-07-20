@@ -65,6 +65,10 @@
 }
 .next {
   margin-left: -110px;
+  background-color: #efc81a;
+}
+.nexts {
+  background-color: #efc81a;
 }
 .garisTwo {
   height: 400px;
@@ -116,12 +120,20 @@
   position: relative;
 }
 .captionCard {
-  color: #666666;
+  color: #fafafa;
   margin-left: 5px;
   font-weight: 500;
-  font-size: 42px;
+  font-size: 34px;
+  text-align: center;
   text-decoration: none;
   text-shadow: 1px 1px #ffffff;
+  background-color: #efc81a;
+  border-radius: 5px 10px;
+}
+.captionCard:hover{
+  background-color: #ffd208;
+  color: #ffffff;
+   text-shadow: 1px 1px #f0ebeb;
 }
 .categories {
   border: none;

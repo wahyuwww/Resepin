@@ -14,10 +14,19 @@ import Login from "../../components/base/Login";
 import Logout from "../../components/base/Logout";
 import Image from "next/image";
 import Link from "next/link";
-import { BsFillPencilFill, BsTrashFill } from "react-icons/bs";
+import { Button, Modal, Form, Container,Col,Row } from "react-bootstrap";
+import {
+  BsFillPencilFill,
+  BsTrashFill,
+  BsFillCloudUploadFill,
+} from "react-icons/bs";
 import Swal from "sweetalert2";
 
 const Prof = ({ profil, cookie, img, isAuth, resepin }) => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const [resep, setResep] = useState([]);
   useEffect(() => {
     setResep(resepin);
@@ -114,11 +123,13 @@ const Prof = ({ profil, cookie, img, isAuth, resepin }) => {
               <div className="col-lg-12">
                 <div className={`${style.profil}`}>
                   {imagePreview ? (
-                    <img
-                      src={imagePreview}
-                      alt=""
-                      className={`${style.profilImage}`}
-                    />
+                    <>
+                      <img
+                        src={imagePreview}
+                        alt=""
+                        className={`${style.profilImage}`}
+                      />
+                    </>
                   ) : (
                     <img
                       src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortFlat&accessoriesType=Kurt&hairColor=BlondeGolden&facialHairType=Blank&clotheType=BlazerSweater&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Pale"
@@ -127,7 +138,7 @@ const Prof = ({ profil, cookie, img, isAuth, resepin }) => {
                       className={`${style.profilImage} rounded`}
                     />
                   )}
-                  <p className={`${style.textProfil} text-center `}>
+                  <p className={`${style.textProfil} text-center mt-3`}>
                     {profil.fullname}
                   </p>
                   <p className={`${style.textProfil} text-center `}>
@@ -138,33 +149,10 @@ const Prof = ({ profil, cookie, img, isAuth, resepin }) => {
                     onSubmit={submit}
                     className={style.formupload}
                   >
-                    <div className={`${style.selectAvatar} mt-2 text-center`}>
-                      <input
-                        type="file"
-                        className="upload"
-                        onChange={(e) => onImageUpload(e)}
-                        id="upload"
-                        hidden
-                      />
-                      <label className={`${style.uploads}`} htmlFor="upload">
-                        Image Profil
-                      </label>
-                    </div>
-                    <div className={`${style.formname} text-center mt-2`}>
-                      <Input
-                        type="text"
-                        className={`${style.inputName} form-control`}
-                        id="exampleFormControlInput1"
-                        placeholder="name"
-                        name="fullname"
-                        value={fullname}
-                        onChange={(e) => setFullname(e.target.value)}
-                      />
-                    </div>
                     <div className={`${style.formbtn} text-center mt-2 mb-5`}>
-                      <button type="submit" className="btn btn-secondary">
-                        upload
-                      </button>
+                      <Button variant="warning" onClick={handleShow}>
+                        Edit Profil
+                      </Button>
                     </div>
                   </form>
                 </div>
@@ -196,7 +184,8 @@ const Prof = ({ profil, cookie, img, isAuth, resepin }) => {
               )}
               <div className="col-lg-12 mt-3">
                 <div className="row row-cols-1 row-cols-sm-3 row-cols-md-4 g-2">
-                  {resep.length > 0 && resep.map((item) => (
+                  {resep.length > 0 &&
+                    resep.map((item) => (
                       <div className="col" key={item.idfood}>
                         <div className="card shadow-sm ms-1">
                           <Link href={`/Resepin/editReciped/${item.idfood}`}>
@@ -234,6 +223,86 @@ const Prof = ({ profil, cookie, img, isAuth, resepin }) => {
         </main>
       </div>
       <Footer></Footer>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Profil</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={submit}>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              {imagePreview ? (
+                <>
+                  {" "}
+                  <img
+                    src={imagePreview}
+                    alt=""
+                    className={`${style.profilImage}`}
+                  />
+                </>
+              ) : (
+                <>
+                  <img
+                    src="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortFlat&accessoriesType=Kurt&hairColor=BlondeGolden&facialHairType=Blank&clotheType=BlazerSweater&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Pale"
+                    alt=""
+                    style={{ borderRadius: "50%" }}
+                    className={`${style.profilImage} rounded`}
+                  />
+                  <BsFillCloudUploadFill />
+                </>
+              )}
+
+              <div className={`${style.selectAvatar} mt-2 text-center`}>
+                <input
+                  type="file"
+                  className="upload"
+                  onChange={(e) => onImageUpload(e)}
+                  id="upload"
+                  hidden
+                />
+                <label className={`${style.uploads}`} htmlFor="upload">
+                  <BsFillCloudUploadFill className={`${style.iconsupload}`} />
+                </label>
+              </div>
+              <Container className="text-end mt-3">
+                <Row>
+                  <Col xs={2} md={3}>
+                    <p>Email : </p>
+                  </Col>
+                  <Col xs={2} md={2}>
+                    <p className={`${style.textProfil}  `}>{profil.email}</p>
+                  </Col>
+                </Row>
+              </Container>
+              <Container className="text-end mt-3">
+                <Row>
+                  <Col xs={2} md={3}>
+                    <p>Fullname : </p>
+                  </Col>
+                  <Col xs={2} md={2}>
+                    <Input
+                      type="text"
+                      className={`${style.inputName} form-control `}
+                      id="exampleFormControlInput1"
+                      placeholder="input Fullname "
+                      name="fullname"
+                      value={fullname}
+                      onChange={(e) => setFullname(e.target.value)}
+                    />
+                  </Col>
+                </Row>
+              </Container>
+            </Form.Group>
+            <Modal.Footer className={`${style.iconsupload}`}>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" type="submit">
+                Update Profile
+              </Button>
+            </Modal.Footer>
+          </Form>
+        </Modal.Body>
+      </Modal>
     </>
   );
 };

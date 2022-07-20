@@ -131,7 +131,7 @@ const Content = () => {
                       alt="Bootstrap"
                       className="img-fluid"
                     />
-                    <div className="card-img-overlay text-white d-flex justify-content-start align-items-end">
+                    <div className="card-img-overlay text-white d-flex justify-content-center align-items-end">
                       <Link href={`/detailResep/${reseps.idfood}`}>
                         <a className={`${styles.captionCard}`}>
                           {reseps.title}
@@ -147,7 +147,7 @@ const Content = () => {
             className={`${styles.pagination} row row-cols-4 row-cols-lg-12 align-items-center g-1 mt-5`}
           >
             <button
-              className="btn btn-primary"
+              className={`${styles.nexts} btn btn-primary`}
               style={{ width: 40, height: 40 }}
               onClick={previos}
             >

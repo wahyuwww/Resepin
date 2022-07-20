@@ -74,6 +74,7 @@ const Form = () => {
           type="checkbox"
           value=""
           id="flexCheckDefault"
+          required
         />
         <label className="form-check-label" htmlFor="flexCheckDefault">
           I agree to terms & conditions
@@ -83,6 +84,7 @@ const Form = () => {
         type="sumbit"
         className={`${style.btnsign} w-100 btn`}
         title="Login"
+       
       >
         {" "}
       </Button>
