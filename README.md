@@ -40,13 +40,13 @@ Here is a working live demo https://resepin.vercel.app/
 Clone the project
 
 ```bash
-  git clone https://github.com/wahyuwww/ResepinNext.git
+  git clone https://github.com/wahyuwww/Resepin.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd ResepinNext
+  cd Resepin
 ```
 
 Install dependencies
