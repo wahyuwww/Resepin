@@ -14,7 +14,7 @@ import Login from "../../components/base/Login";
 import Logout from "../../components/base/Logout";
 import Image from "next/image";
 import Link from "next/link";
-import { Button, Modal, Form, Container,Col,Row } from "react-bootstrap";
+import { Button, Modal, Form, Container, Col, Row } from "react-bootstrap";
 import {
   BsFillPencilFill,
   BsTrashFill,
@@ -22,7 +22,7 @@ import {
 } from "react-icons/bs";
 import Swal from "sweetalert2";
 
-const Prof = ({ profil, cookie, img, isAuth, resepin }) => {
+const Prof = ({ profil, cookie, idUser, img, isAuth, resepin }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -31,34 +31,44 @@ const Prof = ({ profil, cookie, img, isAuth, resepin }) => {
   useEffect(() => {
     setResep(resepin);
   }, []);
-  console.log(resep);
-
+  console.log(cookie);
+  const cookiefix = cookie.split(",")[0];
+  console.log(idUser);
   const router = useRouter();
 
-  const refreshData = () => {
-    // router.replace(router.asPath);
-    router.push("/profil");
-  };
-
+  // const refreshData = () => {
+  //   // router.replace(router.asPath);
+  //   router.push("/profil");
+  // };
   const deletePost = async (id) => {
-    try {
-      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/food/${id}`, {
-        withCredentials: true,
-      });
       Swal.fire({
-        icon: "success",
-        title: "berhasil menghapus !! ",
+        title: "Are you sure to delete this resep?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await axios
+            .delete(`${process.env.NEXT_PUBLIC_API_URL}/food/${id}`, {
+              withCredentials: true,
+            })
+            .then((res) => {
+              // fetchData();
+              // refreshData();
+              // navigate('/product')
+              Swal.fire(
+                "Deleted!",
+                "Your message has been deleted.",
+                "success"
+              );
+              console.log(res);
+            });
+        }
       });
-      refreshData();
-    } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "gagal menghapus",
-      });
-      console.log(error);
-    }
-  };
+  }
 
   const [image, setImage] = useState([]);
   const route = useRouter();
@@ -67,19 +77,20 @@ const Prof = ({ profil, cookie, img, isAuth, resepin }) => {
     img ||
       "https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortFlat&accessoriesType=Kurt&hairColor=BlondeGolden&facialHairType=Blank&clotheType=BlazerSweater&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Pale"
   );
-  const submit = async (e) => {
+  console.log(fullname);
+  const submits = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", image);
     formData.append("fullname", fullname);
     await axios
-      .put(`${process.env.NEXT_PUBLIC_API_URL}/auth/update`, formData, {
-        "content-type": "multipart/form-data",
-        withCredentials: true,
-        headers: {
-          cookie: cookie,
-        },
-      })
+      .put(
+        `https://resepinaja.herokuapp.com/auth/update/5069ea2d-dde3-4559-a6fe-dfab8ac5a985`,
+        formData,
+        {
+          "content-type": "multipart/form-data",
+        }
+      )
       .then((res) => {
         console.log(res);
         route.push("/profil");
@@ -99,6 +110,34 @@ const Prof = ({ profil, cookie, img, isAuth, resepin }) => {
       });
   };
 
+  const submit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("fullname", fullname);
+    console.log("test");
+    await axios
+      .put(`https://resepinaja.herokuapp.com/auth/update/${idUser}`, formData, {
+        "content-type": "multipart/form-data",
+      })
+      .then((res) => {
+        console.log(res);
+        router.push("/profil");
+        Swal.fire({
+          icon: "success",
+          title: "Berhasil mengupdate resep",
+          text: `resep : ${fullname}`,
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "data yang anda inputkan salah",
+        });
+        console.log(error);
+      });
+  };
   const onImageUpload = (e) => {
     const file = e.target.files[0];
     // console.log(file);
@@ -228,7 +267,7 @@ const Prof = ({ profil, cookie, img, isAuth, resepin }) => {
           <Modal.Title>Edit Profil</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={submit}>
+          <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               {imagePreview ? (
                 <>
@@ -296,7 +335,7 @@ const Prof = ({ profil, cookie, img, isAuth, resepin }) => {
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" onClick={submit}>
                 Update Profile
               </Button>
             </Modal.Footer>
@@ -309,12 +348,10 @@ const Prof = ({ profil, cookie, img, isAuth, resepin }) => {
 export async function getServerSideProps(context) {
   try {
     const cookie = context.req.headers.cookie;
-    // const token = context.req.headers.cookie;
-    // console.log(cookie);
-    // console.log(token.split("=")[1]);
+
     if (!cookie) {
       context.res.writeHead(302, {
-        Location: `http://localhost:3000/login`,
+        Location: `https://resepin.vercel.app/login`,
       });
       return {};
     }
@@ -332,9 +369,10 @@ export async function getServerSideProps(context) {
         },
       }
     );
-    const iduser = ProfilData.data.iduser;
+    const idUser = ProfilData.data.iduser;
+    console.log(idUser);
     const { data: dataResep } = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/food/user/${iduser}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/food/user/${idUser}`,
       {
         withCredentials: true,
         headers: {
@@ -349,7 +387,8 @@ export async function getServerSideProps(context) {
       props: {
         profil: ProfilData.data,
         img: images,
-        cookie: cookie,
+        cookie,
+        idUser,
         isAuth: isAuth,
         resepin: dataResep.data,
       },

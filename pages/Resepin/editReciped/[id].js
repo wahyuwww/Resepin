@@ -37,7 +37,6 @@ const EditReciped = ({ resep, isAuth, img, videos }) => {
     await axios
       .put(`${process.env.NEXT_PUBLIC_API_URL}/food/${id}`, formData, {
         "content-type": "multipart/form-data",
-        withCredentials: true,
       })
       .then((res) => {
         // console.log(res);
@@ -147,7 +146,7 @@ export async function getServerSideProps(context) {
     console.log(cookie);
     if (!cookie) {
       context.res.writeHead(302, {
-        Location: `http://localhost:3000/login`,
+        Location: `https://resepin.vercel.app/login`,
       });
       return {};
     }

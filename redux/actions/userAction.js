@@ -48,6 +48,22 @@ export const loginUser = (dataForm) => async (dispatch) => {
       token: user.token,
       payload: user,
     });
+    const data = {
+      token: token,
+    };
+    const cookie = await fetch("/api/loginnext", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const isToken = await cookie.json();
+    if (!isToken) {
+      return Swal.fire("Caution!", "Log in Failed", "error");
+    }
+    Swal.fire("Good Job", "Log in Success", "success");
     Router.push("/home");
    Swal.fire({
      icon: "success",

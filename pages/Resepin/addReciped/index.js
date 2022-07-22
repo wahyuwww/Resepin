@@ -12,13 +12,13 @@ import Login from "../../../components/base/Login";
 import Logout from "../../../components/base/Logout";
 import Swal from "sweetalert2";
 
-const AddReciped = ({ isAuth }) => {
+const AddReciped = ({ isAuth, idUser }) => {
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
   const [ingrediens, setIngrediens] = useState("");
   const [video, setVideo] = useState("");
   const [previewImg, setImagePreview] = useState("");
-
+  console.log(idUser);
   const submit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -26,10 +26,10 @@ const AddReciped = ({ isAuth }) => {
     formData.append("title", title);
     formData.append("ingrediens", ingrediens);
     formData.append("video", video);
+    formData.append("iduser", idUser);
     await axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/food/`, formData, {
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/food`, formData, {
         "content-type": "multipart/form-data",
-        withCredentials: true
       })
       .then((res) => {
         console.log(res);
@@ -41,11 +41,11 @@ const AddReciped = ({ isAuth }) => {
         });
       })
       .catch((error) => {
-         Swal.fire({
-           icon: "error",
-           title: "Oops...",
-           text: "data yang anda inputkan salah",
-         });
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "data yang anda inputkan salah",
+        });
         console.log(error);
       });
   };
@@ -53,7 +53,7 @@ const AddReciped = ({ isAuth }) => {
     const file = e.target.files[0];
     console.log(file);
     setImage(file);
-     setImagePreview(URL.createObjectURL(file));
+    setImagePreview(URL.createObjectURL(file));
   };
   const onVideoUpload = (e) => {
     const file = e.target.files[0];
@@ -62,7 +62,7 @@ const AddReciped = ({ isAuth }) => {
   };
   useEffect(() => {
     if (isAuth === false) {
-     Swal.fire("belum login yaa ?", "silahkan login", "question");
+      Swal.fire("belum login yaa ?", "silahkan login", "question");
       Router.push("/login");
     }
   }, [isAuth]);
@@ -136,12 +136,23 @@ const AddReciped = ({ isAuth }) => {
 export const getServerSideProps = async (context) => {
   try {
     let isAuth = false;
-    
+    const cookie = context.req.headers.cookie;
     if (context.req.headers.cookie) {
       isAuth = true;
     }
+    const { data: ProfilData } = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/auth/profil`,
+      {
+        withCredentials: true,
+        headers: {
+          Cookie: cookie,
+        },
+      }
+    );
+    const idUser = ProfilData.data.iduser;
+    console.log(ProfilData);
     return {
-      props: { isAuth },
+      props: { isAuth, idUser },
     };
   } catch (error) {
     console.log(error);

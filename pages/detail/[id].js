@@ -6,12 +6,12 @@ import style from "./addreceiped.module.css";
 import styles from "../../components/module/detail/style.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
-import Link from "next/link"
+import Link from "next/link";
 import Logout from "../../components/base/Logout";
 import Login from "../../components/base/Login";
 import moment from "moment";
 
-const Detail = ({ resepin}) => {
+const Detail = ({ resepin,isAuth }) => {
   const [title, setTitle] = useState("");
   const [video, setVideo] = useState("");
   const [create, setCreate] = useState("");
@@ -37,7 +37,8 @@ const Detail = ({ resepin}) => {
         classHome={style.navActive}
         classProfil={style.navNon}
       >
-        <Logout></Logout>
+        {isAuth && <Logout></Logout>}
+        {!isAuth && <Login></Login>}
       </Navbars>
       <main className="mt-5">
         <div className="container">
@@ -55,7 +56,9 @@ const Detail = ({ resepin}) => {
                 </video>
               )}
               <h3 className={`${styles.titleVideo} mt-3 `}>{title}</h3>
-              <p className="text-secondary mt-2">{moment(create).format("LLLL")}</p>
+              <p className="text-secondary mt-2">
+                {moment(create).format("LLLL")}
+              </p>
             </div>
             <div className={`${styles.sugestion} col-lg-3 mb-5 `}>
               <h3 className={`${styles.next}`}>Next </h3>
@@ -101,29 +104,54 @@ const Detail = ({ resepin}) => {
   );
 };
 
-export async function getStaticPaths() {
-  const { data: newData } = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/food`
-  );
-  const paths = newData.data.map((item) => ({
-    params: { id: item.idfood.toString() },
-  }));
+// export async function getStaticPaths() {
+//   const { data: newData } = await axios.get(
+//     `${process.env.NEXT_PUBLIC_API_URL}/food`
+//   );
+//   const paths = newData.data.map((item) => ({
+//     params: { id: item.idfood.toString() },
+//   }));
 
-  return { paths, fallback: true };
+//   return { paths, fallback: true };
+// }
+
+// export async function getStaticProps({ params}) {
+//   console.log(params.id);
+//   const { data: newData } = await axios.get(
+//     `${process.env.NEXT_PUBLIC_API_URL}/food/${params.id}`
+//   );
+//   console.log(newData.data[0]);
+//   return {
+//     props: {
+//       resepin: newData.data[0],
+//     },
+//   };
+// }
+export async function getServerSideProps(context) {
+  try {
+    const cookie = context.req.headers.cookie;
+    console.log(cookie);
+    const recipeID = context.params.id;
+    console.log(recipeID);
+    
+    let isAuth = false;
+
+    if (context.req.headers.cookie) {
+      isAuth = true;
+    }
+    const { data: RespData } = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/food/${recipeID}`
+    );
+    console.log(RespData.data[0]);
+    return {
+      props: {
+        isAuth: isAuth,
+        resepin: RespData.data[0],
+      },
+    };
+  } catch (error) {
+    console.log(error);
+  }
 }
-
-export async function getStaticProps({ params}) {
-  console.log(params.id);
-  const { data: newData } = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/food/${params.id}`
-  );
-  console.log(newData.data[0]);
-  return {
-    props: {
-      resepin: newData.data[0],
-    },
-  };
-}
-
 
 export default Detail;

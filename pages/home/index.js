@@ -54,7 +54,7 @@ export const getServerSideProps = async (context) => {
       isAuth = true;
     }
     const cookie = context.req.headers.cookie;
-    console.log(cookie);
+    console.log(isAuth);
     return {
       props: { isAuth },
     };

@@ -3,17 +3,22 @@ import React from "react";
 import Link from "next/link";
 import style from "../navbar/navbar.module.css";
 import axios from "axios";
-import Route from 'next/router'
+import { useRouter } from "next/router";
+import Swal from "sweetalert2";
 
 const Logout = () => {
-  const handleLogout = async (e) => {
-    e.preventDefault();
-    await axios.get("http://localhost:5000/auth/logout", {
-      withCredentials: true,
-    });
-    // console.log(result.message);
-    localStorage.removeItem("login");
-    Route.push("/login");
+  const router = useRouter();
+  const handleLogout = async () => {
+    try {
+      const result = await fetch("/api/logout");
+      const { logout } = await result.json();
+      if (logout) {
+        Swal.fire("Success", "User Logout", "success");
+        router.push("/login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>

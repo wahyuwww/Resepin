@@ -33,6 +33,7 @@
     font-weight: 400;
     font-size: 16px;
     color: #696F79;
+    display: none;
 }
 .btnsign{
     font-family: 'Inter', sans-serif;

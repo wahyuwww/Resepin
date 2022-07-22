@@ -31,12 +31,8 @@ const DetailReseps = ({ resep, isAuth }) => {
         classHome={style.navActive}
         classProfil={style.navNon}
       >
-        {isAuth && (
-          <Logout></Logout>
-        )}
-        {!isAuth && (
-          <Login></Login>
-        )}
+        {isAuth && <Logout></Logout>}
+        {!isAuth && <Login></Login>}
       </Navbars>
       <main className="mt-5">
         <div className="container slide">
@@ -152,18 +148,19 @@ export async function getServerSideProps(context) {
     console.log(cookie);
     const recipeID = context.params.id;
     console.log(recipeID);
-     let isAuth = false;
+    let isAuth = false;
 
-     if (cookie) {
-       isAuth = true;
-     }
+    if (cookie) {
+      isAuth = true;
+    }
+    console.log(isAuth);
     const { data: RespData } = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/food/${recipeID}`
     );
     console.log(RespData.data[0]);
     return {
       props: {
-        isAuth:isAuth,
+        isAuth: isAuth,
         resep: RespData.data[0],
       },
     };
