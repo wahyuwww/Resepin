@@ -77,7 +77,7 @@ const Login = () => {
                       subTitle="Log in into your exiting account"
                       classNameSub={`${styles.subtitle} text-muted mb-4 text-center`}
                     ></Title>
-                    <form onClick={handleSubmit}>
+                    <form onSubmit={handleSubmit}>
                       <div className="mb-3">
                         <label
                           htmlFor="exampleFormControlInput1"
