@@ -332,7 +332,7 @@ export async function getServerSideProps(context) {
         },
       }
     );
-    const iduser = ProfilData.data[0].iduser;
+    const iduser = ProfilData.data.iduser;
     const { data: dataResep } = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/food/user/${iduser}`,
       {
@@ -342,12 +342,12 @@ export async function getServerSideProps(context) {
         },
       }
     );
-    const result = ProfilData.data[0];
-    const images = ProfilData.data[0].image;
-    // console.log(dataResep.data);
+    // const result = ProfilData.data[0];
+    const images = ProfilData.data.image;
+    console.log(images);
     return {
       props: {
-        profil: result,
+        profil: ProfilData.data,
         img: images,
         cookie: cookie,
         isAuth: isAuth,

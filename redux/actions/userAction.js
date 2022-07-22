@@ -45,7 +45,7 @@ export const loginUser = (dataForm) => async (dispatch) => {
 
     dispatch({
       type: "USER_LOGIN_SUCCESS",
-      token: token.data,
+      token: user.token,
       payload: user,
     });
     Router.push("/home");
