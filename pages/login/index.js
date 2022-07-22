@@ -77,7 +77,7 @@ const Login = () => {
                       subTitle="Log in into your exiting account"
                       classNameSub={`${styles.subtitle} text-muted mb-4 text-center`}
                     ></Title>
-                    <form onSubmit={handleSubmit}>
+                    <form >
                       <div className="mb-3">
                         <label
                           htmlFor="exampleFormControlInput1"
@@ -136,7 +136,7 @@ const Login = () => {
                       <button
                         type="sumbit"
                         className={`${style.btnsign} w-100 btn`}
-                        // onClick={handleSubmit}
+                        onClick={handleSubmit}
                       >{loading ? "Logging in.." : "Login"}</button>
                       <div className={`${style.forgot} mb-4 mt-3 float-end`}>
                         <label> Forgot password ? </label>
