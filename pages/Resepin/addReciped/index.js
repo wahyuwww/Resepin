@@ -138,13 +138,13 @@ export const getServerSideProps = async (context) => {
     let isAuth = false;
     const cookie = context.req.headers.cookie;
     console.log(cookie)
-    if (!cookie) {
+    if (cookie === undefined) {
       context.res.writeHead(302, {
-        Location: `https://resepin.vercel.app/login`,
+        Location: `/login`,
       });
-      return {};
+      // return {};
     }
-    if (!context.req.headers.cookie) {
+    if (!context.req.cookie) {
       isAuth = true;
     }
     console.log(isAuth)
