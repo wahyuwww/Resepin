@@ -7,7 +7,7 @@ import Form from "../../../components/base/form";
 import axios from "axios";
 import style from "../../../styles/addreceiped.module.css";
 import Input from "../../../components/base/input/input";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import Login from "../../../components/base/Login";
 import Logout from "../../../components/base/Logout";
 import Swal from "sweetalert2";
@@ -137,9 +137,17 @@ export const getServerSideProps = async (context) => {
   try {
     let isAuth = false;
     const cookie = context.req.headers.cookie;
-    if (context.req.headers.cookie) {
+    console.log(cookie)
+    if (!cookie) {
+      context.res.writeHead(302, {
+        Location: `https://resepin.vercel.app/login`,
+      });
+      return {};
+    }
+    if (!context.req.headers.cookie) {
       isAuth = true;
     }
+    console.log(isAuth)
     const { data: ProfilData } = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/auth/profil`,
       {
@@ -152,7 +160,7 @@ export const getServerSideProps = async (context) => {
     const idUser = ProfilData.data.iduser;
     console.log(ProfilData);
     return {
-      props: { isAuth, idUser },
+      props: { isAuth, idUser,cookie:cookie },
     };
   } catch (error) {
     console.log(error);

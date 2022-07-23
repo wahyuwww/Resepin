@@ -348,7 +348,6 @@ const Prof = ({ profil, cookie, idUser, img, isAuth, resepin }) => {
 export async function getServerSideProps(context) {
   try {
     const cookie = context.req.headers.cookie;
-
     if (!cookie) {
       context.res.writeHead(302, {
         Location: `https://resepin.vercel.app/login`,
