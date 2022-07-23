@@ -140,9 +140,9 @@ export const getServerSideProps = async (context) => {
     console.log(cookie)
     if (cookie === undefined) {
       context.res.writeHead(302, {
-        Location: `https://resepin.netlify.app/login`,
+        Location: `https://resepin.vercel.app/login`,
       });
-      // return {};
+      return {};
     }
     if (!context.req.cookie) {
       isAuth = true;
