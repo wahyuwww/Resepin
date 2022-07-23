@@ -140,7 +140,7 @@ export const getServerSideProps = async (context) => {
     console.log(cookie)
     if (cookie === undefined) {
       context.res.writeHead(302, {
-        Location: `/login`,
+        Location: `https://resepin.netlify.app/login`,
       });
       // return {};
     }
