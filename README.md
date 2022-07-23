@@ -78,7 +78,7 @@ NEXT_PUBLIC_API_URL=
  
 ### Register
 
-### Latest Recipe
+### Update Profil
 
 ### Read Recipe
 
