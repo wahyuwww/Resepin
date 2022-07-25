@@ -8,8 +8,8 @@ import Link from "next/link";
 import style from "./navbar.module.css";
 import axios from "axios";
 import Router from "next/router";
-import Logout from "../Logout";
-const Navbars = ({ classAdd, classHome, classProfil,children }) => {
+import Login from "../Login";
+const NavbarLogin = ({ classAdd, classHome, classProfil,children ,href}) => {
 
 //  const cookie = req.headers.cookie;
 //  console.log(cookie);
@@ -33,17 +33,15 @@ const Navbars = ({ classAdd, classHome, classProfil,children }) => {
                       </a>
                     </li>
                   </Link>
-                  <Link href="/Resepin/addReciped">
-                    <li className={`${style.text} nav-item ms-5`}>
-                      <a className={classAdd} href="#">
-                        Add Recipe
-                      </a>
-                    </li>
-                  </Link>
-                  <Link href="/profil">
+                  <li className={`${style.text} nav-item ms-5`}>
+                    <a className={classAdd} href={href}>
+                      Resep
+                    </a>
+                  </li>
+                  <Link href="/aboutMe">
                     <li className={`${style.text} nav-item ms-5`}>
                       <a className={classProfil} href="#">
-                        Profile
+                        About Website
                       </a>
                     </li>
                   </Link>
@@ -51,7 +49,7 @@ const Navbars = ({ classAdd, classHome, classProfil,children }) => {
               </Nav>
               <Nav className="ms-auto">
                 <ul className="navbar-nav justify-content-end flex-grow-1 pe-5">
-                  <Logout/>
+                  <Login />
                 </ul>
               </Nav>
             </Navbar.Collapse>
@@ -62,4 +60,4 @@ const Navbars = ({ classAdd, classHome, classProfil,children }) => {
   );
 };
 
-export default Navbars;
+export default NavbarLogin;
