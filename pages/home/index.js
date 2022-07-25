@@ -19,34 +19,28 @@ import Home from "../../components/module/homes/homes";
 import Content from "../../components/module/homes/content";
 import Logout from "../../components/base/Logout";
 import Login from "../../components/base/Login";
-import NavbarLogin from "../../components/base/navbarLogin/navbar";
 
 const Hom = ({ isAuth }) => {
   return (
     <div>
-      {isAuth && (
-        <>
-          <Navbars
-            classAdd={styles.navNon}
-            classHome={styles.navActive}
-            classProfil={styles.navNon}
-          ></Navbars>
-        </>
-      )}
-      {!isAuth && (
-        <>
-          <NavbarLogin
-            classAdd={styles.navNon}
-            classHome={styles.navActive}
-            classProfil={styles.navNon}
-             href="#resep"
-          ></NavbarLogin>
-        </>
-      )}
+      <Navbars
+        classAdd={styles.navNon}
+        classHome={styles.navActive}
+        classProfil={styles.navNon}
+      >
+        {isAuth && (
+          <>
+            <Logout></Logout>
+          </>
+        )}
+        {!isAuth && (
+          <>
+            <Login></Login>
+          </>
+        )}
+      </Navbars>
       <Home></Home>
-      <div id="resep">
-        <Content></Content>
-      </div>
+      <Content></Content>
       <Footer></Footer>
     </div>
   );
