@@ -5,7 +5,7 @@ import style from "../navbar/navbar.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
-import { AiOutlineLogout } from "react-icons/ai";
+import { IconName } from "react-icons/ai";
 
 const Logout = () => {
   const router = useRouter();
@@ -26,18 +26,20 @@ const Logout = () => {
       <Link href="/profil">
         <li className="nav-item">
           <button className={`${style.iconLogin} btn btn-light`}>
-           <AiOutlineLogout/>
+            <img src="/assets/User icon.png" alt="" />
           </button>
         </li>
       </Link>
-      <li className="nav-item">
-        <button
-          className={`${style.navLink} btn btn-light`}
-          onClick={handleLogout}
-        >
-          logout
-        </button>
-      </li>
+      <Link to="/login">
+        <li className="nav-item">
+          <button
+            className={`${style.navLink} btn btn-light`}
+            onClick={handleLogout}
+          >
+            logout
+          </button>
+        </li>
+      </Link>
     </>
   );
 };
