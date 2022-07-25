@@ -16,7 +16,7 @@ import {
 const Content = () => {
   const [resep, setResep] = useState([]);
   const [counter, setCounter] = useState(1);
-  const { user } = useSelector((state) => state.auth);
+  // const { user } = useSelector((state) => state.auth);
   const [searchValue, setSearchValue] = useState("");
   const [paginate, setPagination] = useState({
     currentPage: 1,
