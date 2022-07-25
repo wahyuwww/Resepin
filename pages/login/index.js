@@ -27,7 +27,6 @@ const Login = () => {
 
     const handleSubmit = async () => {
       try {
-        console.log('hallo')
         setLoading(true);
         const config = {
           withCredentials: true,
