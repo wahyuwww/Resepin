@@ -70,23 +70,11 @@ To run this project, you will need to add the following environment variables to
 NEXT_PUBLIC_API_URL=
 
 ```
-## Home
-<!-- [![Screenshot-2022-06-14-223652.png](https://i.postimg.cc/Jnfb1Cfr/Screenshot-2022-06-14-223652.png)](https://postimg.cc/Kk5KNwcw) -->
-### Landing
-
-### Login
+## Screenshoots
+<p align="center" display=flex>
+<table>
  
-### Register
 
-### Update Profil
-
-### Read Recipe
-
-### Search Recipe
-
-### Add Recipe and Edit Recipe
-
-### My Recipe
 
   
  ## Development
