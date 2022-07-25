@@ -28,16 +28,8 @@ const Hom = ({ isAuth }) => {
         classHome={styles.navActive}
         classProfil={styles.navNon}
       >
-        {isAuth && (
-          <>
-            <Logout></Logout>
-          </>
-        )}
-        {!isAuth && (
-          <>
-            <Login></Login>
-          </>
-        )}
+        {isAuth && <Logout></Logout>}
+        {!isAuth && <Login></Login>}
       </Navbars>
       <Home></Home>
       <Content></Content>

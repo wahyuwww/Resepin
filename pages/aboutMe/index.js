@@ -27,7 +27,7 @@ const About = ({ isAuth }) => {
             classAdd={styles.navNon}
             classHome={styles.navActive}
             classProfil={styles.navNon}
-            href="/home"
+            // href="/home"
           ></NavbarLogin>
         </>
       )}
