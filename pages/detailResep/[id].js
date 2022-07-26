@@ -16,7 +16,7 @@ const DetailReseps = ({ resep, isAuth }) => {
   const [idfood, setFood] = useState("");
   const [ingrediens, setIngrediens] = useState("");
   const [imagePreview, setImagePreview] = useState("");
-  console.log(idfood);
+  console.log(isAuth);
   // const data = new Date().toISOString().slice(0, 19).replace("T", " ");
   // console.log(data)
   useEffect(() => {

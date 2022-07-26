@@ -17,7 +17,7 @@ const Detail = ({ resepin,isAuth }) => {
   const [video, setVideo] = useState("");
   const [create, setCreate] = useState("");
   // const data = new Date().toISOString().slice(0, 19).replace("T", " ");
-
+console.log(isAuth);
   useEffect(() => {
     setTitle(resepin.title);
     // setVideo((resepin.video.slice(1,-1).split(",")[0]).slice(1,-1))
