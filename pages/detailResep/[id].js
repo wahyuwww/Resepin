@@ -9,6 +9,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Login from "../../components/base/Login";
 import Logout from "../../components/base/Logout";
+import NavbarLogin from "../../components/base/navbarLogin/navbarLogin";
 
 const DetailReseps = ({ resep, isAuth }) => {
   const [title, setTitle] = useState("");
