@@ -10,6 +10,7 @@ import Link from "next/link";
 import Logout from "../../components/base/Logout";
 import Login from "../../components/base/Login";
 import moment from "moment";
+import NavbarLogin from "../../components/base/navbarLogin/navbarLogin";
 
 const Detail = ({ resepin,isAuth }) => {
   const [title, setTitle] = useState("");
@@ -32,14 +33,25 @@ const Detail = ({ resepin,isAuth }) => {
 
   return (
     <>
-      <Navbars
-        classAdd={style.navNon}
-        classHome={style.navActive}
-        classProfil={style.navNon}
-      >
-        {isAuth && <Logout></Logout>}
-        {!isAuth && <Login></Login>}
-      </Navbars>
+      {isAuth && (
+        <>
+          <Navbars
+            classAdd={styles.navNon}
+            classHome={styles.navActive}
+            classProfil={styles.navNon}
+          ></Navbars>
+        </>
+      )}
+      {!isAuth && (
+        <>
+          <NavbarLogin
+            classAdd={styles.navNon}
+            classHome={styles.navActive}
+            classProfil={styles.navNon}
+            href="#resep"
+          ></NavbarLogin>
+        </>
+      )}
       <main className="mt-5">
         <div className="container">
           <div className="row">
