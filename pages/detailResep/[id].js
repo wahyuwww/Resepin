@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../../components/base/footer/footer";
 import Navbars from "../../components/base/navbar/navbar";
-import style from "./addreceiped.module.css";
+import style from "../../styles/addreceiped.module.css";
 import styles from "../../components/module/detailResep/style.module.css";
 import axios from "axios";
 import Link from "next/link";
@@ -30,19 +30,19 @@ const DetailReseps = ({ resep, isAuth }) => {
       {isAuth && (
         <>
           <Navbars
-            classAdd={styles.navNon}
-            classHome={styles.navActive}
-            classProfil={styles.navNon}
+            classAdd={style.navNon}
+            classHome={style.navActive}
+            classProfil={style.navNon}
           ></Navbars>
         </>
       )}
       {!isAuth && (
         <>
           <NavbarLogin
-            classAdd={styles.navNon}
-            classHome={styles.navActive}
-            classProfil={styles.navNon}
-            href="#resep"
+            classAdd={style.navNon}
+            classHome={style.navActive}
+            classProfil={style.navNon}
+            href="/home"
           ></NavbarLogin>
         </>
       )}

@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import Footer from "../../components/base/footer/footer";
 import Navbars from "../../components/base/navbar/navbar";
-import style from "./addreceiped.module.css";
 import styles from "../../components/module/detail/style.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -10,6 +9,7 @@ import Link from "next/link";
 import Logout from "../../components/base/Logout";
 import Login from "../../components/base/Login";
 import moment from "moment";
+import style from "../../styles/addreceiped.module.css";
 import NavbarLogin from "../../components/base/navbarLogin/navbarLogin";
 
 const Detail = ({ resepin,isAuth }) => {
@@ -36,18 +36,18 @@ const Detail = ({ resepin,isAuth }) => {
       {isAuth && (
         <>
           <Navbars
-            classAdd={styles.navNon}
-            classHome={styles.navActive}
-            classProfil={styles.navNon}
+            classAdd={style.navNon}
+            classHome={style.navActive}
+            classProfil={style.navNon}
           ></Navbars>
         </>
       )}
       {!isAuth && (
         <>
           <NavbarLogin
-            classAdd={styles.navNon}
-            classHome={styles.navActive}
-            classProfil={styles.navNon}
+            classAdd={style.navNon}
+            classHome={style.navActive}
+            classProfil={style.navNon}
             href="#resep"
           ></NavbarLogin>
         </>
