@@ -7,7 +7,7 @@ import Profils from "../../components/module/profil/profil";
 import styles from "../../styles/addreceiped.module.css";
 import axios from "axios";
 import style from "../../components/module/profil/style.module.css";
-import NavbarLogin from "../../components/base/navbarLogin/navbar";
+import NavbarLogin from "../../components/base/navbarLogin/navbarLogin";
 
 const About = ({ isAuth }) => {
   return (
