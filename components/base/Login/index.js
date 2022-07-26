@@ -10,7 +10,7 @@ const Login = () => {
         <li className="nav-item">
           <a
             className={`${style.navLink} nav-link`}
-            aria-current="page"
+            aria-current="page" href="#"
           >
             Login
           </a>

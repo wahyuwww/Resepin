@@ -350,7 +350,7 @@ export async function getServerSideProps(context) {
     const cookie = context.req.headers.cookie;
     if (!cookie) {
       context.res.writeHead(302, {
-        Location: `https://reseps.vercel.app/login`,
+        Location: `https://resepin.vercel.app/login`,
       });
       return {};
     }

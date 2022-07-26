@@ -30,7 +30,7 @@ const Logout = () => {
           </button>
         </li>
       </Link>
-      <Link to="/login">
+      <Link href="/login">
         <li className="nav-item">
           <button
             className={`${style.navLink} btn btn-light`}
