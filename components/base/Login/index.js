@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import React from 'react'
 import Link from "next/link";
 import style from "../navbar/navbar.module.css";
@@ -10,7 +11,6 @@ const Login = () => {
           <a
             className={`${style.navLink} nav-link`}
             aria-current="page"
-            href="#"
           >
             Login
           </a>
