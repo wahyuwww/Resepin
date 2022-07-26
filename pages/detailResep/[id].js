@@ -2,20 +2,21 @@
 import React, { useEffect, useState } from "react";
 import Footer from "../../components/base/footer/footer";
 import Navbars from "../../components/base/navbar/navbar";
-import style from "./addreceiped.module.css";
+import style from "../../styles/addreceiped.module.css";
 import styles from "../../components/module/detailResep/style.module.css";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
 import Login from "../../components/base/Login";
 import Logout from "../../components/base/Logout";
+import NavbarLogin from "../../components/base/navbarLogin/navbarLogin";
 
 const DetailReseps = ({ resep, isAuth }) => {
   const [title, setTitle] = useState("");
   const [idfood, setFood] = useState("");
   const [ingrediens, setIngrediens] = useState("");
   const [imagePreview, setImagePreview] = useState("");
-  console.log(idfood);
+  console.log(isAuth);
   // const data = new Date().toISOString().slice(0, 19).replace("T", " ");
   // console.log(data)
   useEffect(() => {
@@ -26,14 +27,25 @@ const DetailReseps = ({ resep, isAuth }) => {
   }, [resep]);
   return (
     <div>
-      <Navbars
-        classAdd={style.navNon}
-        classHome={style.navActive}
-        classProfil={style.navNon}
-      >
-        {isAuth && <Logout></Logout>}
-        {!isAuth && <Login></Login>}
-      </Navbars>
+      {isAuth && (
+        <>
+          <Navbars
+            classAdd={style.navNon}
+            classHome={style.navActive}
+            classProfil={style.navNon}
+          ></Navbars>
+        </>
+      )}
+      {!isAuth && (
+        <>
+          <NavbarLogin
+            classAdd={style.navNon}
+            classHome={style.navActive}
+            classProfil={style.navNon}
+            href="/home"
+          ></NavbarLogin>
+        </>
+      )}
       <main className="mt-5">
         <div className="container slide">
           <div className="row">

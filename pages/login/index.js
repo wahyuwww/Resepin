@@ -59,6 +59,12 @@ const Login = () => {
         Swal.fire("Good Job", "Log in Success", "success");
         router.push("/home");
       } catch (error) {
+         router.push("/login");
+         Swal.fire({
+           icon: "error",
+           title: "Oops...",
+           text: "pastikan email & password terisi dengan benar ",
+         });
         console.log(error);
       }
     };
