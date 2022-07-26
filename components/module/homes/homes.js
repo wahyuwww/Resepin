@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";;
 import Content from "./content";
 
 const Home = ({ resep, name, resepin }) => {
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auths);
   console.log(resepin);
   return (
     <div>

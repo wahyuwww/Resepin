@@ -21,7 +21,7 @@ const Search = ({ isAuth }) => {
   const router = useRouter();
   const [resep, setResep] = useState([]);
   const [counter, setCounter] = useState(1);
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auths);
   console.log(user);
   const [paginate, setPagination] = useState({
     currentPage: 1,
