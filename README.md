@@ -84,16 +84,12 @@ NEXT_PUBLIC_API_URL=
   </tr>
   
   <tr>
-    <td><image src="./screensoot/ss2.png" alt="Home Page" width=100% ></td>
-  </tr>
-  <tr>
+    <image src="./screensoot/ss2.png" alt="Home Page" width=100% >
     <td>Home Page</td>
   </tr>
 
   <tr>
-    <td><image src="./screensoot/crop.png" alt="My Product" width=100%></td>
-  </tr>
-  <tr>
+    <image src="./screensoot/crop.png" alt="My Product" width=100%>
       <td>Detail Resep</td>
   </tr>
   
