@@ -140,9 +140,9 @@ If you'd like to request a new function, feel free to do so by opening an issue 
 
 ## Related Project
 
-:rocket: [`Backend Resepin`](https://github.com/wahyuwww/Resepin-Frontend)
+:rocket: [`Backend Resepin`](https://github.com/wahyuwww/backend-resepin.git)
 
-:rocket: [`Frontend Resepin`](https://github.com/wahyuwww/backend-resepin.git)
+:rocket: [`Frontend Resepin`](https://github.com/wahyuwww/Resepin-Frontend/tree/readme-new)
 
 :rocket: [`Web Service`](https://resepinaja.herokuapp.com/)
 
