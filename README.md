@@ -71,8 +71,50 @@ NEXT_PUBLIC_API_URL=
 
 ```
 ## Screenshoots
-<p align="center" display=flex>
-<table>
+
+  <tr>
+    <td><image src="./screensoot/Screenshot_3.png" alt="Register Page" width=100%></td>
+    <td><image src="./screensoot/Screenshot_4.png" alt="Login Pagee" width=100%/></td>
+  </tr>
+   <tr>
+    <td>Register Page</td>
+    <td>Login Page</td>
+  </tr>
+  
+  <tr>
+    <td><image src="./screensoot/ss2.png" alt="Home Page" width=100% ></td>
+    <td><image src="./screensoot/crop.png" alt="My Product" width=100%></td>
+  </tr>
+  <tr>
+    <td>Home Page</td>
+    <td>Detail Resep</td>
+  </tr>
+  <tr>
+    <td><image src="./screensoot/video tutor.png" alt="List My Product" width=100%></td>
+        <td><image src="./screensoot/Screenshot_2.png" alt="Salling Product" width=100%></td>
+  </tr>
+  <tr>
+      <td>Video Tutorial</td>
+       <td>Profile</td>
+  </tr>
+  
+  <tr>
+    <td><image src="./screensoot/edit profil.png" alt="Edit Product" width=100%></td>
+    <td><image src="./screensoot/fix my resep.png" alt="Update Profil" width=100%></td>
+  </tr>
+  <tr>
+      <td>Edit Profile</td>
+     <td>Update Profil</td>
+  </tr>
+  <tr>
+    <td><image src="./screensoot/add resep.png" alt="Edit Product" width=100%></td>
+    <td><image src="./screensoot/editnoncrop.png" alt="Update Profil" width=100%></td>
+  </tr>
+  <tr>
+      <td>Add resep</td>
+     <td>Edit resep</td>
+  </tr>
+</table>
  
 
 
