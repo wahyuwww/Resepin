@@ -93,7 +93,7 @@ NEXT_PUBLIC_API_URL=
   </tr>
   <tr>
     <td><image src="./screensoot/video tutor.png" alt="List My Product" width=100%></td>
-        <td><image src="./screensoot/Resepinaja.png" alt="Salling Product" width=100%></td>
+        <td><image src="./screensoot/profile.png" alt="Salling Product" width=100%></td>
   </tr>
   <tr>
       <td>Video Tutorial</td>
@@ -101,7 +101,7 @@ NEXT_PUBLIC_API_URL=
   </tr>
   
   <tr>
-    <td><image src="./screensoot/edit profil.png" alt="Edit Product" width=100%></td>
+    <td><image src="./screensoot/Resepinaja.png" alt="Edit Product" width=100%></td>
     <td><image src="./screensoot/my resepin.png" alt="Update Profil" width=100%></td>
   </tr>
   <tr>
