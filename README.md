@@ -141,8 +141,15 @@ If you find a bug (the website couldn't handle the query and / or gave undesired
 If you'd like to request a new function, feel free to do so by opening an issue [here](https://github.com/iharsh234/WebApp/issues/new). Please include sample queries and their corresponding results.
 
 
-## Back End
-https://github.com/wahyuwww/backend-resepin.git
+## Related Project
+
+:rocket: [`Backend Resepin`](https://github.com/wahyuwww/backend-resepin.git)
+
+:rocket: [`Frontend Resepin`](https://github.com/wahyuwww/Resepin-Frontend/tree/readme-new)
+
+:rocket: [`Web Service`](https://resepinaja.herokuapp.com/)
+
+:rocket: [`Demo Resepin`](https://resepin.vercel.app/)
 
 ## Contact
 
