@@ -107,8 +107,8 @@ NEXT_PUBLIC_API_URL=
      <td>My Resep</td>
   </tr>
   <tr>
-    <td><image src="./screensoot/add resep.png" alt="Edit Product" width=100%></td>
-    <td><image src="./screensoot/editnoncrop.png" alt="Update Profil" width=100%></td>
+    <td><image src="./screensoot/addd.png" alt="Edit Product" width=100%></td>
+    <td><image src="./screensoot/EDITS.png" alt="Update Profil" width=100%></td>
   </tr>
   <tr>
       <td>Add resep</td>
