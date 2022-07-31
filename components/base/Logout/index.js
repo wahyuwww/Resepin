@@ -36,7 +36,7 @@ const Logout = () => {
             className={`${style.navLink} btn btn-light`}
             onClick={handleLogout}
           >
-            logout
+            Logout
           </button>
         </li>
       </Link>
