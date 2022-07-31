@@ -23,7 +23,7 @@ const Form = ({
                 <div className={`${styles.bgUpload} card `} style={style}>
                   <div className="card-body">
                     <div className={`${styles.add}  text-center`}>
-                      <p className="mt-5">image</p>
+                      <p className="mt-5">Image</p>
                       <img src="../assets/image.png" alt="" />
                       {contentImage}
                     </div>
@@ -33,7 +33,7 @@ const Form = ({
                 <div className="mb-3">{contentIngrediens}</div>
 
                 <div className="mb-3">
-                  <label className={`${styles.videos} `}>video</label>
+                  <label className={`${styles.videos} `}>Video</label>
                   {contentVideo}
                 </div>
                 <Button
