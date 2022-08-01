@@ -73,7 +73,7 @@ NEXT_PUBLIC_API_URL=
 <table>
  
   <tr>
-    <td><image src="./screensoot/Screenshot_3.png" alt="Register Page" width=100%></td>
+    <td><image src="./screensoot/register resep fix.png" alt="Register Page" width=100%></td>
     <td><image src="./screensoot/Screenshot_4.png" alt="Login Pagee" width=100%/></td>
   </tr>
    <tr>
