@@ -90,7 +90,7 @@ NEXT_PUBLIC_API_URL=
     <td>Detail Resep</td>
   </tr>
   <tr>
-    <td><image src="./screensoot/video tutor.png" alt="List My Product" width=100%></td>
+    <td><image src="./screensoot/fix detail video.png" alt="List My Product" width=100%></td>
         <td><image src="./screensoot/profile.png" alt="Salling Product" width=100%></td>
   </tr>
   <tr>
