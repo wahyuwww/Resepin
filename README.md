@@ -1,6 +1,6 @@
 <br/>
 <div align="center">
-<img src="https://i.postimg.cc/65pLzxB6/Group-4.png" width="auto" height="230" cover />
+<img src="https://i.postimg.cc/dVwgNF3G/logo-images-food.png" width="auto" height="230" cover />
  </div>
  <div align="center">
   <br />
